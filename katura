@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IronHold Pro | 絶対固定テクノロジー</title>
+    <meta name="description" content="もう、風を恐れない。業界初、耐風速50m/sの『絶対固定』テクノロジーを搭載したハイエンド・ウィッグ。">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        luxury: {
+                            black: '#0a0a0a',
+                            dark: '#141414',
+                            gray: '#2a2a2a',
+                            gold: '#D4AF37', // Classic Gold
+                            goldLight: '#F3E5AB',
+                            goldDark: '#AA8C2C',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cinzel"', 'serif'],
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'gradient-gold': 'linear-gradient(135deg, #AA8C2C 0%, #D4AF37 50%, #F3E5AB 100%)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Utilities */
+        body {
+            background-color: #050505;
+            color: #e5e5e5;
+            font-feature-settings: "palt";
+        }
+        
+        .text-gold-gradient {
+            background: linear-gradient(to right, #D4AF37, #F3E5AB, #D4AF37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: shine 5s linear infinite;
+        }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        /* Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Stagger Delays */
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+
+        /* Accordion */
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+        }
+        .faq-content.open {
+            max-height: 200px; /* Approximate max height */
+            transition: max-height 0.4s cubic-bezier(1, 0, 1, 0);
+        }
+        
+        /* Smooth Parallax for Hero */
+        .hero-bg {
+            transition: transform 0.2s cubic-bezier(0,0,0,1);
+        }
+    </style>
+</head>
+<body class="antialiased font-sans selection:bg-luxury-gold selection:text-black overflow-x-hidden">
+
+    <header class="fixed top-0 w-full z-50 bg-luxury-black/90 backdrop-blur-md border-b border-white/10 transition-all duration-300" id="header">
+        <div class="container mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="font-serif text-2xl font-bold tracking-widest text-luxury-gold">
+                IronHold<span class="text-white text-sm ml-1 font-sans font-light tracking-normal opacity-70">Pro</span>
+            </div>
+            <a href="#offer" class="hidden md:block px-6 py-2 border border-luxury-gold text-luxury-gold text-sm tracking-wider hover:bg-luxury-gold hover:text-black transition duration-300">
+                PURCHASE
+            </a>
+        </div>
+    </header>
+
+    <section class="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=2574&auto=format&fit=crop" 
+                 alt="Strong confidence against wind" 
+                 class="hero-bg w-full h-full object-cover opacity-60">
+            <div class="absolute inset-0 bg-gradient-to-b from-luxury-black/40 via-luxury-black/60 to-luxury-black"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10 text-center pt-20">
+            <p class="reveal text-luxury-gold tracking-[0.2em] mb-6 text-sm md:text-base font-serif uppercase">
+                The Ultimate Fixation Technology
+            </p>
+            <h1 class="reveal delay-100 text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8 font-serif">
+                もう、風を<br class="md:hidden">恐れない。<br>
+                <span class="text-transparent bg-clip-text bg-gradient-gold">絶対固定</span>の領域へ。
+            </h1>
+            <p class="reveal delay-200 text-gray-300 text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-12">
+                台風も、ジェットコースターも、オープンカーも。<br>
+                あなたの日常から「髪を手で押さえる」という動作を、完全に消去します。
+            </p>
+            <div class="reveal delay-300">
+                <a href="#offer" class="group relative inline-flex items-center justify-center px-10 py-4 bg-gradient-gold text-luxury-black font-bold tracking-widest overflow-hidden transition-transform duration-300 hover:scale-105">
+                    <span class="relative z-10">詳細を見る</span>
+                    <div class="absolute inset-0 bg-white/30 transform -translate-x-full group-hover
