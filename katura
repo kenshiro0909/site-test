@@ -6,22 +6,25 @@
     <title>IronHold Pro | 絶対固定テクノロジー</title>
     <meta name="description" content="もう、風を恐れない。業界初、耐風速50m/sの『絶対固定』テクノロジーを搭載したハイエンド・ウィッグ。">
     
+    <!-- Tailwind CSS (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
 
+    <!-- Tailwind Config & Custom Styles -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
                         luxury: {
-                            black: '#0a0a0a',
+                            black: '#050505',
                             dark: '#141414',
                             gray: '#2a2a2a',
-                            gold: '#D4AF37', // Classic Gold
+                            gold: '#D4AF37', /* Classic Gold */
                             goldLight: '#F3E5AB',
                             goldDark: '#AA8C2C',
                         }
@@ -32,6 +35,10 @@
                     },
                     backgroundImage: {
                         'gradient-gold': 'linear-gradient(135deg, #AA8C2C 0%, #D4AF37 50%, #F3E5AB 100%)',
+                        'gradient-dark': 'linear-gradient(to bottom, #050505, #141414)',
+                    },
+                    letterSpacing: {
+                        widest: '.2em',
                     }
                 }
             }
@@ -50,7 +57,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-size: 200% auto;
-            animation: shine 5s linear infinite;
+            animation: shine 4s linear infinite;
         }
 
         @keyframes shine {
@@ -60,7 +67,7 @@
         /* Animation Classes */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(40px);
             transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
         }
         .reveal.active {
@@ -72,58 +79,454 @@
         .delay-100 { transition-delay: 100ms; }
         .delay-200 { transition-delay: 200ms; }
         .delay-300 { transition-delay: 300ms; }
+        .delay-500 { transition-delay: 500ms; }
 
         /* Accordion */
         .faq-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+            transition: max-height 0.5s cubic-bezier(0.19, 1, 0.22, 1);
         }
         .faq-content.open {
-            max-height: 200px; /* Approximate max height */
-            transition: max-height 0.4s cubic-bezier(1, 0, 1, 0);
+            max-height: 300px;
         }
         
         /* Smooth Parallax for Hero */
-        .hero-bg {
-            transition: transform 0.2s cubic-bezier(0,0,0,1);
+        .parallax-bg {
+            transition: transform 0.1s linear;
+            will-change: transform;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050505;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #D4AF37;
         }
     </style>
 </head>
-<body class="antialiased font-sans selection:bg-luxury-gold selection:text-black overflow-x-hidden">
+<body class="antialiased font-sans selection:bg-luxury-gold selection:text-luxury-black overflow-x-hidden">
 
-    <header class="fixed top-0 w-full z-50 bg-luxury-black/90 backdrop-blur-md border-b border-white/10 transition-all duration-300" id="header">
+    <!-- Header -->
+    <header class="fixed top-0 w-full z-50 bg-luxury-black/90 backdrop-blur-md border-b border-white/5 transition-all duration-500" id="header">
         <div class="container mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="font-serif text-2xl font-bold tracking-widest text-luxury-gold">
-                IronHold<span class="text-white text-sm ml-1 font-sans font-light tracking-normal opacity-70">Pro</span>
-            </div>
-            <a href="#offer" class="hidden md:block px-6 py-2 border border-luxury-gold text-luxury-gold text-sm tracking-wider hover:bg-luxury-gold hover:text-black transition duration-300">
-                PURCHASE
+            <a href="#" class="font-serif text-2xl font-bold tracking-widest text-luxury-gold hover:opacity-80 transition">
+                IronHold<span class="text-white text-xs ml-1 font-sans font-light tracking-widest opacity-70">PRO</span>
+            </a>
+            <nav class="hidden md:flex space-x-8 text-sm tracking-widest text-gray-400">
+                <a href="#features" class="hover:text-luxury-gold transition duration-300">TECHNOLOGY</a>
+                <a href="#product" class="hover:text-luxury-gold transition duration-300">PRODUCT</a>
+                <a href="#reviews" class="hover:text-luxury-gold transition duration-300">REVIEWS</a>
+                <a href="#faq" class="hover:text-luxury-gold transition duration-300">FAQ</a>
+            </nav>
+            <a href="#offer" class="hidden md:flex items-center justify-center px-6 py-2 border border-luxury-gold text-luxury-gold text-xs tracking-widest hover:bg-luxury-gold hover:text-black transition duration-300 uppercase">
+                Purchase Now
             </a>
         </div>
     </header>
 
+    <!-- Hero Section -->
     <section class="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
+        <!-- Background Image -->
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=2574&auto=format&fit=crop" 
-                 alt="Strong confidence against wind" 
-                 class="hero-bg w-full h-full object-cover opacity-60">
-            <div class="absolute inset-0 bg-gradient-to-b from-luxury-black/40 via-luxury-black/60 to-luxury-black"></div>
+            <!-- REPLACE: Hero Image (Windy/Strong/Dark) -->
+            <img src="https://images.unsplash.com/photo-1505535162959-9bbcb4ab22d6?q=80&w=2663&auto=format&fit=crop" 
+                 alt="Man standing against wind" 
+                 class="parallax-bg w-full h-full object-cover opacity-50 grayscale scale-110">
+            <div class="absolute inset-0 bg-gradient-to-b from-luxury-black/60 via-luxury-black/40 to-luxury-black"></div>
         </div>
 
         <div class="container mx-auto px-6 relative z-10 text-center pt-20">
-            <p class="reveal text-luxury-gold tracking-[0.2em] mb-6 text-sm md:text-base font-serif uppercase">
-                The Ultimate Fixation Technology
-            </p>
-            <h1 class="reveal delay-100 text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8 font-serif">
+            <div class="overflow-hidden mb-6">
+                <p class="reveal text-luxury-gold tracking-[0.3em] text-xs md:text-sm font-serif uppercase border-b border-luxury-gold/30 inline-block pb-2">
+                    The Ultimate Fixation Technology
+                </p>
+            </div>
+            <h1 class="reveal delay-100 text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8 font-serif text-white drop-shadow-2xl">
                 もう、風を<br class="md:hidden">恐れない。<br>
-                <span class="text-transparent bg-clip-text bg-gradient-gold">絶対固定</span>の領域へ。
+                <span class="text-gold-gradient">絶対固定</span>の領域へ。
             </h1>
-            <p class="reveal delay-200 text-gray-300 text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-12">
+            <p class="reveal delay-200 text-gray-300 text-sm md:text-lg leading-loose max-w-2xl mx-auto mb-12 font-light">
                 台風も、ジェットコースターも、オープンカーも。<br>
-                あなたの日常から「髪を手で押さえる」という動作を、完全に消去します。
+                あなたの日常から<span class="text-white font-normal">「髪を手で押さえる」</span>という動作を、<br class="hidden md:block">テクノロジーの力で完全に消去します。
             </p>
             <div class="reveal delay-300">
-                <a href="#offer" class="group relative inline-flex items-center justify-center px-10 py-4 bg-gradient-gold text-luxury-black font-bold tracking-widest overflow-hidden transition-transform duration-300 hover:scale-105">
+                <a href="#offer" class="group relative inline-flex items-center justify-center px-12 py-4 bg-gradient-gold text-luxury-black font-bold tracking-widest overflow-hidden transition-all duration-300 hover:scale-105 shadow-[0_0_20px_rgba(212,175,55,0.3)]">
                     <span class="relative z-10">詳細を見る</span>
-                    <div class="absolute inset-0 bg-white/30 transform -translate-x-full group-hover
+                    <div class="absolute inset-0 bg-white/40 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out"></div>
+                </a>
+            </div>
+            
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce opacity-50">
+                <svg class="w-6 h-6 text-luxury-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Point Section (Features) -->
+    <section id="features" class="py-24 md:py-32 bg-luxury-black relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20">
+                <h2 class="reveal text-3xl md:text-4xl font-serif font-bold text-white mb-4">Why IronHold?</h2>
+                <p class="reveal delay-100 text-gray-400 tracking-wider text-sm">なぜ、飛ばないのか。その科学的根拠。</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-12 lg:gap-16">
+                <!-- Feature 01 -->
+                <div class="reveal group">
+                    <div class="relative h-64 mb-8 overflow-hidden border border-white/10">
+                        <!-- REPLACE: Tech Image -->
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2670&auto=format&fit=crop" alt="Aerodynamics" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-80">
+                        <div class="absolute inset-0 bg-luxury-black/20"></div>
+                        <div class="absolute top-4 left-4 text-luxury-gold font-serif text-5xl opacity-20 font-bold">01</div>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center">
+                        <span class="w-8 h-[1px] bg-luxury-gold mr-3"></span>
+                        特許技術 Aero-Lock構造
+                    </h3>
+                    <p class="text-gray-400 leading-relaxed text-sm">
+                        風を「受け止める」のではなく、航空力学に基づき「逃がす」流線型メッシュ構造を採用。正面からの風速50m/sの突風すらも無力化します。
+                    </p>
+                </div>
+
+                <!-- Feature 02 -->
+                <div class="reveal delay-100 group">
+                    <div class="relative h-64 mb-8 overflow-hidden border border-white/10">
+                        <!-- REPLACE: Material Image -->
+                        <img src="https://images.unsplash.com/photo-1535295972055-1c762f4483e5?q=80&w=2574&auto=format&fit=crop" alt="Skin Texture" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-80">
+                        <div class="absolute inset-0 bg-luxury-black/20"></div>
+                        <div class="absolute top-4 left-4 text-luxury-gold font-serif text-5xl opacity-20 font-bold">02</div>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center">
+                        <span class="w-8 h-[1px] bg-luxury-gold mr-3"></span>
+                        医療グレード吸着素材
+                    </h3>
+                    <p class="text-gray-400 leading-relaxed text-sm">
+                        汗や水に反応して吸着力が増す、特殊バイオスキンを採用。激しい運動中の発汗時こそ、最強の固定力を発揮します。
+                    </p>
+                </div>
+
+                <!-- Feature 03 -->
+                <div class="reveal delay-200 group">
+                    <div class="relative h-64 mb-8 overflow-hidden border border-white/10">
+                        <!-- REPLACE: Fit Image -->
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop" alt="Seamless Fit" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-80">
+                        <div class="absolute inset-0 bg-luxury-black/20"></div>
+                        <div class="absolute top-4 left-4 text-luxury-gold font-serif text-5xl opacity-20 font-bold">03</div>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center">
+                        <span class="w-8 h-[1px] bg-luxury-gold mr-3"></span>
+                        360度シームレスフィット
+                    </h3>
+                    <p class="text-gray-400 leading-relaxed text-sm">
+                        3Dスキャンによる完全オーダーメイド設計。どの角度からの風も隙間に入り込ませず、頭皮と一体化する感覚を実現しました。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section (Lifestyle) -->
+    <section class="py-24 bg-luxury-dark relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col md:flex-row items-center gap-12 lg:gap-20">
+                <div class="w-full md:w-1/2 reveal">
+                    <!-- REPLACE: Lifestyle Image -->
+                    <div class="relative">
+                        <div class="absolute -inset-4 border border-luxury-gold/20 transform translate-x-4 translate-y-4"></div>
+                        <img src="https://images.unsplash.com/photo-1535131749006-b7f58c99034b?q=80&w=2670&auto=format&fit=crop" alt="Golf Swing" class="relative w-full shadow-2xl grayscale hover:grayscale-0 transition duration-700">
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2">
+                    <h2 class="reveal text-3xl md:text-4xl font-serif font-bold text-white mb-8 leading-tight">
+                        人生から「制約」を解き放つ。
+                    </h2>
+                    <ul class="space-y-8">
+                        <li class="reveal delay-100 flex items-start">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full border border-luxury-gold/30 flex items-center justify-center text-luxury-gold mr-6">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-white mb-2">フルスイングのゴルフ</h4>
+                                <p class="text-gray-400 text-sm leading-relaxed">風の強い日のラウンドでも、帽子のズレや髪型を気にすることなく、最高のスイングに集中できます。</p>
+                            </div>
+                        </li>
+                        <li class="reveal delay-200 flex items-start">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full border border-luxury-gold/30 flex items-center justify-center text-luxury-gold mr-6">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-white mb-2">絶叫マシンも笑顔で</h4>
+                                <p class="text-gray-400 text-sm leading-relaxed">ジェットコースターのGと突風にも耐えうる設計。もうアトラクションの前で帽子を押さえる必要はありません。</p>
+                            </div>
+                        </li>
+                        <li class="reveal delay-300 flex items-start">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full border border-luxury-gold/30 flex items-center justify-center text-luxury-gold mr-6">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-white mb-2">オープンカーでのドライブ</h4>
+                                <p class="text-gray-400 text-sm leading-relaxed">屋根を開け放ち、風を感じる喜びを。助手席や対向車の視線すら、優越感へと変わります。</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Spec -->
+    <section id="product" class="py-24 bg-luxury-black relative">
+        <div class="container mx-auto px-6 max-w-4xl text-center">
+            <h2 class="reveal text-3xl md:text-5xl font-serif font-bold text-white mb-4">IronHold Pro</h2>
+            <p class="reveal delay-100 text-luxury-gold tracking-widest text-sm mb-16">SPECIFICATION</p>
+            
+            <div class="reveal delay-200 border border-white/10 bg-white/5 p-8 md:p-12 backdrop-blur-sm">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+                    <div class="text-center">
+                        <div class="text-gray-500 text-xs tracking-widest mb-2">MATERIAL</div>
+                        <div class="text-white font-bold">耐熱ファイバー100%</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-gray-500 text-xs tracking-widest mb-2">METHOD</div>
+                        <div class="text-white font-bold">完全総手植え</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-gray-500 text-xs tracking-widest mb-2">RESISTANCE</div>
+                        <div class="text-white font-bold">耐風速 50m/s</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-gray-500 text-xs tracking-widest mb-2">WATERPROOF</div>
+                        <div class="text-white font-bold">IPX8相当</div>
+                    </div>
+                </div>
+                <hr class="border-white/10 my-8">
+                <p class="text-gray-400 text-sm leading-loose">
+                    カラーバリエーション：Jet Black / Dark Brown / Natural Gray<br>
+                    付属品：専用ハードケース、メンテナンスキット、吸着促進剤
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews -->
+    <section id="reviews" class="py-24 bg-luxury-dark border-t border-white/5">
+        <div class="container mx-auto px-6">
+            <h2 class="reveal text-center text-3xl font-serif font-bold text-white mb-16">Voices</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Review 1 -->
+                <div class="reveal p-8 bg-luxury-black border border-white/5 hover:border-luxury-gold/30 transition duration-300">
+                    <div class="flex text-luxury-gold mb-4">
+                        ★★★★★
+                    </div>
+                    <p class="text-gray-300 italic mb-6 leading-relaxed">
+                        「趣味のスカイダイビングで着用しましたが、インストラクターの髪より乱れませんでした。着地した瞬間、人生が変わったと感じました。もう何も怖くありません。」
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-gray-700 rounded-full mr-4 flex items-center justify-center text-white font-serif">K</div>
+                        <div>
+                            <div class="text-white text-sm font-bold">K.S 様</div>
+                            <div class="text-gray-500 text-xs">30代 経営者 / 東京</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Review 2 -->
+                <div class="reveal delay-100 p-8 bg-luxury-black border border-white/5 hover:border-luxury-gold/30 transition duration-300">
+                    <div class="flex text-luxury-gold mb-4">
+                        ★★★★★
+                    </div>
+                    <p class="text-gray-300 italic mb-6 leading-relaxed">
+                        「台風の日の出勤が憂鬱でしたが、傘が壊れるほどの強風でも髪だけは無事でした。同僚にも気づかれず、逆に『髪型決まってるね』と言われるほどです。」
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-gray-700 rounded-full mr-4 flex items-center justify-center text-white font-serif">T</div>
+                        <div>
+                            <div class="text-white text-sm font-bold">T.M 様</div>
+                            <div class="text-gray-500 text-xs">40代 会社員 / 大阪</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offer / CTA -->
+    <section id="offer" class="py-32 relative overflow-hidden flex items-center justify-center">
+        <!-- Background Overlay -->
+        <div class="absolute inset-0 z-0">
+             <!-- REPLACE: CTA Background (Luxury Texture) -->
+            <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2670&auto=format&fit=crop" alt="Luxury Texture" class="w-full h-full object-cover opacity-20">
+            <div class="absolute inset-0 bg-gradient-to-t from-luxury-black via-luxury-black/90 to-luxury-black/80"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <div class="reveal inline-block border border-luxury-gold/50 px-6 py-2 text-luxury-gold tracking-widest text-sm mb-8 bg-black/50 backdrop-blur">
+                WEB LIMITED OFFER
+            </div>
+            <h2 class="reveal delay-100 text-4xl md:text-5xl font-serif font-bold text-white mb-6">
+                揺るぎない自信を、その手に。
+            </h2>
+            <p class="reveal delay-200 text-gray-400 mb-12">
+                初回生産分、残りわずかとなります。
+            </p>
+
+            <div class="reveal delay-300 bg-white/5 border border-luxury-gold/30 p-8 md:p-12 max-w-2xl mx-auto backdrop-blur-md mb-12">
+                <div class="text-gray-400 text-sm line-through mb-2">通常価格 59,800円</div>
+                <div class="text-5xl md:text-6xl font-serif font-bold text-white mb-4">
+                    <span class="text-2xl align-top mr-2">¥</span>29,800<span class="text-sm font-sans font-normal text-gray-400 ml-2">(税込)</span>
+                </div>
+                <div class="text-luxury-gold text-sm tracking-wider mb-8">
+                    + 30日間「ふっとんだら全額返金」保証付き
+                </div>
+                
+                <a href="#" class="block w-full py-5 bg-gradient-gold text-luxury-black font-bold text-lg tracking-widest hover:scale-[1.02] transition-transform duration-300 shadow-[0_0_30px_rgba(212,175,55,0.4)]">
+                    今すぐ「絶対安心」を手に入れる
+                </a>
+                <p class="text-gray-500 text-xs mt-4">※ お申込み完了後、専任カウンセラーより採寸のご案内を差し上げます。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-24 bg-luxury-black">
+        <div class="container mx-auto px-6 max-w-3xl">
+            <h2 class="reveal text-center text-3xl font-serif font-bold text-white mb-16">FAQ</h2>
+            <div class="space-y-4">
+                <!-- Q1 -->
+                <div class="reveal border-b border-white/10 pb-4">
+                    <button class="faq-toggle w-full flex justify-between items-center py-4 text-left text-white hover:text-luxury-gold transition">
+                        <span class="font-bold">Q. 本当にジェットコースターに乗れますか？</span>
+                        <span class="text-2xl text-luxury-gold">+</span>
+                    </button>
+                    <div class="faq-content">
+                        <p class="text-gray-400 pb-4 leading-relaxed text-sm">
+                            はい、可能です。当社テストコースにて最高速度130km/hのコースターでの連続搭乗試験をクリアしております。ただし、安全バーが頭部に接触しないようご注意ください。
+                        </p>
+                    </div>
+                </div>
+                <!-- Q2 -->
+                <div class="reveal delay-100 border-b border-white/10 pb-4">
+                    <button class="faq-toggle w-full flex justify-between items-center py-4 text-left text-white hover:text-luxury-gold transition">
+                        <span class="font-bold">Q. 固定力が強いと、蒸れませんか？</span>
+                        <span class="text-2xl text-luxury-gold">+</span>
+                    </button>
+                    <div class="faq-content">
+                        <p class="text-gray-400 pb-4 leading-relaxed text-sm">
+                            独自の「マイクロ・ベンチレーションシステム」により、固定力を維持したまま通気性を確保しています。従来のウィッグと比較し、湿気排出量は約3倍を記録しています。
+                        </p>
+                    </div>
+                </div>
+                <!-- Q3 -->
+                <div class="reveal delay-200 border-b border-white/10 pb-4">
+                    <button class="faq-toggle w-full flex justify-between items-center py-4 text-left text-white hover:text-luxury-gold transition">
+                        <span class="font-bold">Q. 取り外す時は痛くないですか？</span>
+                        <span class="text-2xl text-luxury-gold">+</span>
+                    </button>
+                    <div class="faq-content">
+                        <p class="text-gray-400 pb-4 leading-relaxed text-sm">
+                            付属の専用リムーバー液を使用することで、接着成分が瞬時に中和され、肌を傷めることなくスルッと取り外しが可能です。痛みはありませんのでご安心ください。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-12 border-t border-white/10 text-center">
+        <div class="container mx-auto px-6">
+            <div class="font-serif text-2xl font-bold text-luxury-gold mb-8 opacity-50">IronHold Pro</div>
+            <div class="flex justify-center space-x-6 mb-8 text-xs text-gray-500 tracking-widest">
+                <a href="#" class="hover:text-white transition">PRIVACY POLICY</a>
+                <a href="#" class="hover:text-white transition">TERMS OF SERVICE</a>
+                <a href="#" class="hover:text-white transition">CONTACT</a>
+            </div>
+            <p class="text-gray-600 text-xs">
+                &copy; 2024 IronHold Pro. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Reveal Animation Observer
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px 0px -10% 0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target); // Run once
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Parallax Effect
+            window.addEventListener('scroll', () => {
+                const scrolled = window.scrollY;
+                const parallaxBg = document.querySelector('.parallax-bg');
+                const heroBg = document.querySelector('.hero-bg');
+                
+                if (parallaxBg) {
+                    parallaxBg.style.transform = `translateY(${scrolled * 0.4}px) scale(1.1)`;
+                }
+                if (heroBg) {
+                    heroBg.style.transform = `translateY(${scrolled * 0.4}px)`;
+                }
+            });
+
+            // Header Scroll Effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('bg-luxury-black/95', 'py-2');
+                    header.classList.remove('py-4');
+                } else {
+                    header.classList.remove('bg-luxury-black/95', 'py-2');
+                    header.classList.add('py-4');
+                }
+            });
+
+            // FAQ Accordion
+            document.querySelectorAll('.faq-toggle').forEach(button => {
+                button.addEventListener('click', () => {
+                    const content = button.nextElementSibling;
+                    const icon = button.querySelector('span:last-child');
+                    
+                    content.classList.toggle('open');
+                    icon.textContent = content.classList.contains('open') ? '−' : '+';
+                });
+            });
+            
+            // Smooth Scroll for Anchor Links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
