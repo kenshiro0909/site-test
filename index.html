@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafe & Lounge AROMATIQUE | 表参道の隠れ家カフェ</title>
+    <meta name="description" content="喧騒を離れ、香りと静寂を楽しむ大人の隠れ家。Cafe & Lounge AROMATIQUEで、特別なひとときをお過ごしください。">
+    
+    <!-- Fonts: Playfair Display (English Serif) / Shippori Mincho (Japanese Serif) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Shippori+Mincho:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        theme: {
+                            base: '#0B1120',    /* Deep Midnight Navy */
+                            surface: '#151E32', /* Slightly Lighter Navy */
+                            text: '#E2E8F0',    /* Off-white */
+                            accent: '#D4AF37',  /* Champagne Gold */
+                            muted: '#94A3B8'    /* Muted Blue-Grey */
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        jp: ['"Shippori Mincho"', 'serif'],
+                    },
+                    letterSpacing: {
+                        widest: '.25em',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS for Animations & Utilities -->
+    <style>
+        /* Base Styles */
+        body {
+            background-color: #0B1120;
+            color: #E2E8F0;
+            font-family: "Shippori Mincho", serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Typography Utilities */
+        .font-eng {
+            font-family: "Playfair Display", serif;
+        }
+        
+        /* Reveal Animation Classes */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Stagger Delays */
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+        
+        /* Image Hover Zoom */
+        .img-zoom-container {
+            overflow: hidden;
+        }
+        .img-zoom-target {
+            transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .img-zoom-container:hover .img-zoom-target {
+            transform: scale(1.05);
+        }
+
+        /* Gold Line Decoration */
+        .gold-line::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 1px;
+            background-color: #D4AF37;
+            margin: 1.5rem auto 0;
+        }
+
+        /* Mobile Menu Transition */
+        #mobile-menu {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+    </style>
+</head>
+<body class="leading-relaxed">
+
+    <!-- Header -->
+    <header class="fixed w-full top-0 z-50 transition-all duration-300" id="header">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-eng tracking-widest text-theme-text relative z-50">
+                <a href="#">AROMATIQUE</a>
+            </h1>
+            
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex space-x-10 text-sm tracking-widest font-eng text-theme-text/80">
+                <a href="#story" class="hover:text-theme-accent transition-colors duration-300">STORY</a>
+                <a href="#gallery" class="hover:text-theme-accent transition-colors duration-300">GALLERY</a>
+                <a href="#menu" class="hover:text-theme-accent transition-colors duration-300">MENU</a>
+                <a href="#access" class="hover:text-theme-accent transition-colors duration-300">ACCESS</a>
+            </nav>
+
+            <!-- Mobile Hamburger -->
+            <button id="menu-btn" class="md:hidden z-50 space-y-1.5 focus:outline-none group">
+                <span class="block w-6 h-px bg-theme-text transition-transform group-hover:bg-theme-accent"></span>
+                <span class="block w-6 h-px bg-theme-text transition-transform group-hover:bg-theme-accent"></span>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 bg-theme-base/95 backdrop-blur-sm z-40 flex flex-col justify-center items-center opacity-0 pointer-events-none">
+            <nav class="flex flex-col space-y-8 text-center font-eng text-xl tracking-widest">
+                <a href="#story" class="mobile-link hover:text-theme-accent">STORY</a>
+                <a href="#gallery" class="mobile-link hover:text-theme-accent">GALLERY</a>
+                <a href="#menu" class="mobile-link hover:text-theme-accent">MENU</a>
+                <a href="#access" class="mobile-link hover:text-theme-accent">ACCESS</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- REPLACE: Hero Image -->
+        <div class="absolute inset-0 z-0">
+            <img 
+                src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?q=80&w=1920&auto=format&fit=crop" 
+                alt="Luxury Lounge Atmosphere" 
+                class="w-full h-full object-cover opacity-60 scale-105 animate-pulse-slow"
+                style="animation: none; transition: transform 20s ease-out; transform: scale(1.1);"
+            >
+            <div class="absolute inset-0 bg-gradient-to-b from-theme-base/60 via-theme-base/40 to-theme-base"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+            <p class="text-theme-accent font-eng tracking-[0.2em] mb-4 text-sm md:text-base reveal-on-scroll">
+                Est. 2024 - Omotesando
+            </p>
+            <h2 class="text-4xl md:text-6xl lg:text-7xl font-eng leading-tight mb-8 reveal-on-scroll delay-100">
+                Silence & Aroma
+            </h2>
+            <div class="h-px w-12 bg-theme-accent mx-auto mb-8 reveal-on-scroll delay-200"></div>
+            <p class="text-lg md:text-xl font-jp font-light tracking-wider leading-loose reveal-on-scroll delay-200">
+                香りと静寂に包まれる、<br class="md:hidden">大人の隠れ家。<br>
+                あなただけの特別な時間が、<br class="md:hidden">ここから始まります。
+            </p>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center opacity-60 animate-bounce">
+            <span class="text-xs font-eng tracking-widest mb-2">SCROLL</span>
+            <div class="w-px h-12 bg-theme-text/50"></div>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section id="story" class="py-24 md:py-32 relative">
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            <!-- Image -->
+            <div class="img-zoom-container reveal-on-scroll">
+                <!-- REPLACE: Story Image -->
+                <img 
+                    src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=1000&auto=format&fit=crop" 
+                    alt="Coffee Roasting and Atmosphere" 
+                    class="w-full h-[500px] object-cover img-zoom-target shadow-2xl shadow-theme-base"
+                >
+            </div>
+            
+            <!-- Text -->
+            <div class="reveal-on-scroll delay-100">
+                <span class="text-theme-accent font-eng text-sm tracking-widest block mb-4">OUR PHILOSOPHY</span>
+                <h3 class="text-3xl md:text-4xl font-jp mb-8 leading-snug">
+                    一杯のコーヒーが、<br>日常を芸術に変える。
+                </h3>
+                <p class="text-theme-muted mb-6 leading-loose font-light text-justify">
+                    AROMATIQUEが大切にしているのは、五感で味わう「余白」の時間です。
+                    厳選された豆を自家焙煎し、一杯ずつ丁寧にハンドドリップで抽出。
+                    その香りが立ち込める空間は、都会の喧騒を忘れさせてくれます。
+                </p>
+                <p class="text-theme-muted mb-8 leading-loose font-light text-justify">
+                    アンティーク家具に深く腰掛け、静かに流れるジャズとともに。
+                    ここは、自分自身と向き合い、心を整えるためのサンクチュアリです。
+                </p>
+                <div class="mt-10">
+                    <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=200&auto=format&fit=crop" alt="Signature Icon" class="w-24 h-24 object-cover rounded-full border border-theme-accent/30 p-1 opacity-80">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-theme-surface">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal-on-scroll">
+                <h3 class="text-3xl md:text-4xl font-eng tracking-wider mb-2">Moments of Peace</h3>
+                <p class="text-theme-muted text-sm tracking-widest font-jp">静謐な空間と、美しい瞬間</p>
+                <div class="gold-line"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Gallery 1 -->
+                <div class="img-zoom-container aspect-[3/4] md:aspect-[4/5] reveal-on-scroll">
+                    <!-- REPLACE: Gallery Image 1 -->
+                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=800&auto=format&fit=crop" alt="Interior" class="w-full h-full object-cover img-zoom-target">
+                </div>
+                <!-- Gallery 2 (Center, slightly lower on desktop for stagger effect) -->
+                <div class="img-zoom-container aspect-[3/4] md:aspect-[4/5] reveal-on-scroll delay-100 md:mt-12">
+                    <!-- REPLACE: Gallery Image 2 -->
+                    <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?q=80&w=800&auto=format&fit=crop" alt="Details" class="w-full h-full object-cover img-zoom-target">
+                </div>
+                <!-- Gallery 3 -->
+                <div class="img-zoom-container aspect-[3/4] md:aspect-[4/5] reveal-on-scroll delay-200">
+                    <!-- REPLACE: Gallery Image 3 -->
+                    <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=800&auto=format&fit=crop" alt="Coffee" class="w-full h-full object-cover img-zoom-target">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Signature Menu Section -->
+    <section id="menu" class="py-24 md:py-32">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-20 reveal-on-scroll">
+                <h3 class="text-3xl md:text-4xl font-eng tracking-wider mb-2">Our Specialties</h3>
+                <p class="text-theme-muted text-sm tracking-widest font-jp">至高の逸品</p>
+                <div class="gold-line"></div>
+            </div>
+
+            <div class="space-y-16">
+                <!-- Menu Item 1 -->
+                <div class="flex flex-col md:flex-row items-center gap-10 reveal-on-scroll">
+                    <div class="w-full md:w-1/2 aspect-video img-zoom-container">
+                        <!-- REPLACE: Menu Image 1 -->
+                        <img src="https://images.unsplash.com/photo-1610632380989-680fe40816c6?q=80&w=800&auto=format&fit=crop" alt="Specialty Coffee" class="w-full h-full object-cover img-zoom-target">
+                    </div>
+                    <div class="w-full md:w-1/2 text-center md:text-left">
+                        <h4 class="text-2xl font-eng mb-2 text-theme-accent">Aromatique Blend</h4>
+                        <p class="font-jp text-lg mb-4">アロマティーク・ブレンド</p>
+                        <p class="text-theme-muted font-light leading-relaxed mb-4">
+                            深煎りのマンデリンをベースに、カカオのようなコクと果実味を調和させた独自のブレンド。
+                            一口含めば、長い余韻とともに心が解き放たれます。
+                        </p>
+                        <span class="font-eng text-xl block">¥1,200</span>
+                    </div>
+                </div>
+
+                <!-- Menu Item 2 -->
+                <div class="flex flex-col md:flex-row-reverse items-center gap-10 reveal-on-scroll delay-100">
+                    <div class="w-full md:w-1/2 aspect-video img-zoom-container">
+                        <!-- REPLACE: Menu Image 2 -->
+                        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=800&auto=format&fit=crop" alt="Seasonal Tart" class="w-full h-full object-cover img-zoom-target">
+                    </div>
+                    <div class="w-full md:w-1/2 text-center md:text-left">
+                        <h4 class="text-2xl font-eng mb-2 text-theme-accent">Seasonal Fruit Tart</h4>
+                        <p class="font-jp text-lg mb-4">季節の自家製タルト</p>
+                        <p class="text-theme-muted font-light leading-relaxed mb-4">
+                            旬の果実をふんだんに使用した、パティシエ特製のタルト。
+                            甘さ控えめのクリームとサクサクの生地が、コーヒーの苦味を引き立てます。
+                        </p>
+                        <span class="font-eng text-xl block">¥950</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PDF Menu Link -->
+            <div class="text-center mt-16 reveal-on-scroll">
+                <a href="#" class="inline-block border border-theme-accent text-theme-accent px-8 py-3 text-sm tracking-widest hover:bg-theme-accent hover:text-theme-base transition-colors duration-300 font-eng">
+                    VIEW FULL MENU
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info / Access Section -->
+    <section id="access" class="py-24 bg-theme-surface relative overflow-hidden">
+        <!-- Background Decoration -->
+        <div class="absolute top-0 left-0 w-64 h-64 bg-theme-accent/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+
+        <div class="max-w-4xl mx-auto px-6 text-center reveal-on-scroll">
+            <h3 class="text-3xl md:text-4xl font-eng tracking-wider mb-2">Visit Us</h3>
+            <div class="gold-line mb-12"></div>
+
+            <div class="mb-12">
+                <h4 class="text-2xl font-eng tracking-widest mb-6">Cafe & Lounge AROMATIQUE</h4>
+                <p class="text-theme-muted mb-2 font-light">〒107-0062 東京都港区南青山 5-XX-XX <br class="md:hidden">隠れ家ビル 2F</p>
+                <p class="text-theme-muted font-light">表参道駅 B1出口より徒歩5分</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-12 border-t border-b border-theme-text/10 py-8">
+                <div>
+                    <span class="block text-theme-accent font-eng text-sm tracking-widest mb-2">OPEN HOURS</span>
+                    <p class="font-light">11:00 - 23:00 (L.O. 22:30)</p>
+                    <p class="text-xs text-theme-muted mt-1">定休日：火曜日</p>
+                </div>
+                <div>
+                    <span class="block text-theme-accent font-eng text-sm tracking-widest mb-2">CONTACT</span>
+                    <p class="font-light">03-XXXX-XXXX</p>
+                    <p class="text-xs text-theme-muted mt-1">ご予約はお電話にて承ります</p>
+                </div>
+            </div>
+
+            <!-- Google Maps Placeholder -->
+            <div class="w-full h-64 bg-theme-base/50 flex items-center justify-center border border-theme-text/10">
+                <p class="text-theme-muted font-light tracking-widest text-sm">GOOGLE MAPS AREA</p>
+                <!-- 
+                <iframe src="YOUR_GOOGLE_MAPS_EMBED_URL" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-theme-base py-12 border-t border-theme-text/5">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left">
+                <h2 class="text-lg font-eng tracking-widest text-theme-text mb-1">AROMATIQUE</h2>
+                <p class="text-xs text-theme-muted font-light">Silence & Aroma.</p>
+            </div>
+            
+            <div class="flex space-x-6">
+                <a href="#" class="text-theme-muted hover:text-theme-accent transition-colors">
+                    <span class="sr-only">Instagram</span>
+                    <!-- Icon: Instagram -->
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.468 2.53c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+            </div>
+            
+            <p class="text-xs text-theme-muted font-light order-last md:order-none">
+                &copy; 2024 Cafe & Lounge AROMATIQUE. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Intersection Observer for Reveal Animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px 0px -10% 0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const revealElements = document.querySelectorAll('.reveal-on-scroll');
+            revealElements.forEach(el => observer.observe(el));
+        });
+
+        // Header Scroll Effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('bg-theme-base/90', 'backdrop-blur-md', 'shadow-lg');
+            } else {
+                header.classList.remove('bg-theme-base/90', 'backdrop-blur-md', 'shadow-lg');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            } else {
+                mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+                document.body.style.overflow = '';
+            }
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if(isMenuOpen) toggleMenu();
+            });
+        });
+    </script>
+</body>
+</html>
