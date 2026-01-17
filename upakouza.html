@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>うぱ講座 | 実績ゼロから選ばれるクリエイターへ</title>
+    <meta name="description" content="実績ゼロでも選ばれるクリエイターへ。不安を自信に変える実践型クライアントワーク講座「うぱ講座」。ポートフォリオ作成から提案文まで完全サポート。">
+    
+    <!-- Google Fonts: 高級感のある明朝体と可読性の高いゴシック体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Config for Custom Colors & Fonts -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        theme: {
+                            light: '#fafaf9', // stone-50
+                            base: '#f5f5f4',  // stone-100
+                            dark: '#1c1917',  // stone-900
+                            accent: '#b49b57', // 落ち着いたゴールド
+                            accentLight: '#dcc688',
+                            text: '#44403c',  // stone-700
+                            muted: '#78716c', // stone-500
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Shippori Mincho"', 'serif'],
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "linear-gradient(to right bottom, rgba(28, 25, 23, 0.7), rgba(28, 25, 23, 0.5)), url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Styles for Animations -->
+    <style>
+        /* ベーススタイル */
+        body {
+            font-family: "Noto Sans JP", sans-serif;
+            color: #44403c;
+            background-color: #fafaf9;
+            line-height: 1.8;
+            letter-spacing: 0.05em;
+        }
+        h1, h2, h3, .font-serif {
+            font-family: "Shippori Mincho", serif;
+            letter-spacing: 0.08em;
+        }
+
+        /* アニメーション用クラス */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* 遅延表示用 */
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+
+        /* スムーズなラインアニメーション */
+        .line-growth {
+            width: 0;
+            transition: width 1.5s ease-out;
+        }
+        .line-growth.active {
+            width: 64px;
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden">
+
+    <!-- Header -->
+    <header class="fixed w-full top-0 z-50 transition-all duration-300 bg-theme-light/90 backdrop-blur-md border-b border-theme-base" id="header">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="text-2xl font-serif font-medium tracking-widest text-theme-dark">
+                うぱ講座
+            </a>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-theme-muted">
+                <a href="#about" class="hover:text-theme-accent transition-colors">悩み</a>
+                <a href="#benefit" class="hover:text-theme-accent transition-colors">得られる未来</a>
+                <a href="#service" class="hover:text-theme-accent transition-colors">カリキュラム</a>
+                <a href="#profile" class="hover:text-theme-accent transition-colors">講師紹介</a>
+                <a href="#contact" class="px-6 py-2.5 bg-theme-dark text-white rounded-sm hover:bg-theme-accent transition-colors duration-300">
+                    LINEで相談
+                </a>
+            </nav>
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-theme-dark p-2" aria-label="メニューを開く">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen min-h-[700px] flex items-center justify-center bg-hero-pattern bg-cover bg-center bg-fixed bg-no-repeat text-white px-6">
+        <div class="absolute inset-0 bg-theme-dark/40"></div>
+        <div class="relative z-10 max-w-4xl mx-auto text-center reveal active">
+            <p class="text-sm md:text-base tracking-[0.2em] mb-6 text-theme-accentLight font-medium uppercase">
+                Creative Work School
+            </p>
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif font-medium leading-tight mb-8">
+                実績ゼロでも、<br class="md:hidden" />選ばれる<br>
+                <span class="text-theme-accentLight">「プロ」</span>のクリエイターへ。
+            </h1>
+            <p class="text-base md:text-lg text-gray-200 mb-12 max-w-2xl mx-auto leading-relaxed font-light">
+                ポートフォリオ作成から提案文、信頼されるやり取りまで。<br>
+                不安を「自信」に変える、実践型クライアントワーク講座。
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#contact" class="inline-block bg-theme-accent hover:bg-theme-accentLight text-white min-w-[240px] px-8 py-4 rounded-sm transition-all duration-300 transform hover:translate-y-[-2px] shadow-lg text-center font-medium tracking-wide">
+                    まずはLINEで相談する
+                </a>
+                <a href="#service" class="inline-block bg-transparent border border-white/30 hover:bg-white/10 text-white min-w-[240px] px-8 py-4 rounded-sm transition-all duration-300 text-center font-medium tracking-wide backdrop-blur-sm">
+                    講座の詳細を見る
+                </a>
+            </div>
+        </div>
+        
+        <!-- Scroll Down Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce opacity-70">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        </div>
+    </section>
+
+    <!-- Introduction (Problem) -->
+    <section id="about" class="py-24 md:py-32 bg-theme-light">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="text-theme-accent text-sm tracking-widest font-bold block mb-4">INTRODUCTION</span>
+                <h2 class="text-3xl md:text-4xl font-serif text-theme-dark mb-6">
+                    こんな悩み、<br class="md:hidden">抱えていませんか？
+                </h2>
+                <div class="h-px w-16 bg-theme-accent mx-auto line-growth"></div>
+            </div>
+
+            <div class="space-y-8 reveal delay-100">
+                <div class="bg-white p-8 md:p-10 shadow-sm border-l-4 border-theme-accent flex items-start gap-4 hover:shadow-md transition-shadow duration-300">
+                    <span class="text-theme-accent text-2xl mt-1">01.</span>
+                    <div>
+                        <h3 class="text-lg font-bold text-theme-dark mb-2">応募しても返信が来ない…</h3>
+                        <p class="text-theme-muted text-sm md:text-base">何件提案してもスルーされてしまう。自分の何が悪いのかわからず、モチベーションだけが下がっていく。</p>
+                    </div>
+                </div>
+                <div class="bg-white p-8 md:p-10 shadow-sm border-l-4 border-theme-accent flex items-start gap-4 hover:shadow-md transition-shadow duration-300">
+                    <span class="text-theme-accent text-2xl mt-1">02.</span>
+                    <div>
+                        <h3 class="text-lg font-bold text-theme-dark mb-2">実績がないからアピールできない</h3>
+                        <p class="text-theme-muted text-sm md:text-base">「未経験歓迎」に応募しても、経験者に負けてしまう。最初の1件目をどう取ればいいかわからない。</p>
+                    </div>
+                </div>
+                <div class="bg-white p-8 md:p-10 shadow-sm border-l-4 border-theme-accent flex items-start gap-4 hover:shadow-md transition-shadow duration-300">
+                    <span class="text-theme-accent text-2xl mt-1">03.</span>
+                    <div>
+                        <h3 class="text-lg font-bold text-theme-dark mb-2">クライアントワークが怖い</h3>
+                        <p class="text-theme-muted text-sm md:text-base">もしトラブルになったらどうしよう。正しい敬語やチャットのマナーに自信が持てない。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center reveal delay-200">
+                <p class="text-lg md:text-xl font-serif leading-loose text-theme-dark">
+                    その原因は、スキル不足ではありません。<br>
+                    <span class="bg-theme-accent/20 px-2 py-1">「相手目線の伝え方」</span>と<span class="bg-theme-accent/20 px-2 py-1">「プロの作法」</span>を<br>
+                    まだ知らないだけかもしれません。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefit Section -->
+    <section id="benefit" class="py-24 md:py-32 bg-theme-dark text-white relative overflow-hidden">
+        <!-- Background Accent -->
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-theme-accent/5 blur-3xl"></div>
+        
+        <div class="max-w-6xl mx-auto px-6 relative z-10">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 reveal">
+                <div class="max-w-xl">
+                    <span class="text-theme-accent text-sm tracking-widest font-bold block mb-4">BENEFIT</span>
+                    <h2 class="text-3xl md:text-5xl font-serif leading-tight">
+                        クライアントに<br>
+                        「安心」と「信頼」を<br>
+                        届けるプロへ。
+                    </h2>
+                </div>
+                <p class="mt-8 md:mt-0 md:pl-10 text-gray-400 text-sm md:text-base max-w-sm border-l border-gray-700 pl-6">
+                    うぱ講座を受講することで、あなたのクリエイター人生は大きく変わります。
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Benefit 1 -->
+                <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-8 hover:bg-white/10 transition-colors duration-300 reveal delay-100 group">
+                    <div class="w-12 h-12 bg-theme-accent/20 rounded-full flex items-center justify-center mb-6 group-hover:bg-theme-accent transition-colors duration-300">
+                        <svg class="w-6 h-6 text-theme-accent group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-serif mb-4">「採用される」<br>ポートフォリオ</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        ただ作品を並べるだけではありません。クライアントが知りたい情報を的確に伝え、会う前から信頼を勝ち取るポートフォリオが完成します。
+                    </p>
+                </div>
+
+                <!-- Benefit 2 -->
+                <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-8 hover:bg-white/10 transition-colors duration-300 reveal delay-200 group">
+                    <div class="w-12 h-12 bg-theme-accent/20 rounded-full flex items-center justify-center mb-6 group-hover:bg-theme-accent transition-colors duration-300">
+                        <svg class="w-6 h-6 text-theme-accent group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-serif mb-4">「あなたにお願いしたい」<br>と言われる提案力</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        テンプレートのコピペは卒業。相手の課題に寄り添い、「この人なら任せられる」と思わせる提案文の書き方を習得します。
+                    </p>
+                </div>
+
+                <!-- Benefit 3 -->
+                <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-8 hover:bg-white/10 transition-colors duration-300 reveal delay-300 group">
+                    <div class="w-12 h-12 bg-theme-accent/20 rounded-full flex items-center justify-center mb-6 group-hover:bg-theme-accent transition-colors duration-300">
+                        <svg class="w-6 h-6 text-theme-accent group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-serif mb-4">迷わず動ける<br>正しい仕事の作法</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        レスポンスの速さ、SNSでの振る舞い、トラブル回避術。長く愛されるクリエイターに必要な「仕事の流儀」を身につけます。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service (Curriculum) Section -->
+    <section id="service" class="py-24 md:py-32 bg-theme-light">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-20 reveal">
+                <span class="text-theme-accent text-sm tracking-widest font-bold block mb-4">CURRICULUM</span>
+                <h2 class="text-3xl md:text-5xl font-serif text-theme-dark mb-8">
+                    選ばれるための<br>
+                    「8つの鉄則」を完全網羅。
+                </h2>
+                <p class="text-theme-muted">
+                    うぱ講座で徹底解説する、重要ポイントの一部をご紹介します。
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Point 1 -->
+                <div class="bg-white p-8 border border-theme-base hover:border-theme-accent/30 transition-all duration-300 reveal">
+                    <span class="text-theme-accent font-serif text-lg block mb-2">Point 01</span>
+                    <h3 class="text-xl font-bold mb-4 text-theme-dark border-b border-gray-100 pb-3">冒頭の挨拶と簡単なPR</h3>
+                    <p class="text-sm text-theme-muted leading-relaxed">
+                        シンプルかつ分かりやすく。「自分を採用するメリット」を簡潔に伝えます。ご挨拶程度にとどめつつ、応募案件に活かせるスキルを1〜2行でスマートに提示する技術を学びます。
+                    </p>
+                </div>
+
+                <!-- Point 2 -->
+                <div class="bg-white p-8 border border-theme-base hover:border-theme-accent/30 transition-all duration-300 reveal delay-100">
+                    <span class="text-theme-accent font-serif text-lg block mb-2">Point 02</span>
+                    <h3 class="text-xl font-bold mb-4 text-theme-dark border-b border-gray-100 pb-3">実績（具体性と説得力）</h3>
+                    <p class="text-sm text-theme-muted leading-relaxed">
+                        経験年数や数値だけでなく、「どんな仕事をしてきたか」を具体的に書く方法。実績が少ない場合でも、練習作品（ポートフォリオ）をどう効果的に見せるかを伝授します。
+                    </p>
+                </div>
+
+                <!-- Point 3 -->
+                <div class="bg-white p-8 border border-theme-base hover:border-theme-accent/30 transition-all duration-300 reveal">
+                    <span class="text-theme-accent font-serif text-lg block mb-2">Point 03</span>
+                    <h3 class="text-xl font-bold mb-4 text-theme-dark border-b border-gray-100 pb-3">使用可能ツール / スキル</h3>
+                    <p class="text-sm text-theme-muted leading-relaxed">
+                        「この案件にどのスキルが活かせるか？」という視点が重要。募集要項に合わせて必要な情報だけをシンプルにまとめ、即戦力であることをアピールします。
+                    </p>
+                </div>
+
+                <!-- Point 4 -->
+                <div class="bg-white p-8 border border-theme-base hover:border-theme-accent/30 transition-all duration-300 reveal delay-100">
+                    <span class="text-theme-accent font-serif text-lg block mb-2">Point 04</span>
+                    <h3 class="text-xl font-bold mb-4 text-theme-dark border-b border-gray-100 pb-3">SNS運用の信頼性</h3>
+                    <p class="text-sm text-theme-muted leading-relaxed">
+                        クライアントは発信内容から人柄を見ています。ネガティブ発言を避け、丁寧な発信で「信頼できそうな人」という印象を作るプロのSNS運用術。
+                    </p>
+                </div>
+
+                <!-- Point 5 -->
+                <div class="bg-white p-8 border border-theme-base hover:border-theme-accent/30 transition-all duration-300 reveal">
+                    <span class="text-theme-accent font-serif text-lg block mb-2">Point 05</span>
+                    <h3 class="text-xl font-bold mb-4 text-theme-dark border-b border-gray-100 pb-3">連絡可能ツールの提示</h3>
+                    <p class="text-sm text-theme-muted leading-relaxed">
+                        指定ツールへの対応はもちろん、扱えるツールが多いほどやり取りの幅が広がります。クライアントに安心感を与えるための準備とは。
+                    </p>
+                </div>
+
+                <!-- Point 6 -->
+                <div class="bg-white p-8 border border-theme-base hover:border-theme-accent/30 transition-all duration-300 reveal delay-100">
+                    <span class="text-theme-accent font-serif text-lg block mb-2">Point 06</span>
+                    <h3 class="text-xl font-bold mb-4 text-theme-dark border-b border-gray-100 pb-3">稼働時間・曜日の明示</h3>
+                    <p class="text-sm text-theme-muted leading-relaxed">
+                        見栄を張らず正直に。「この時間なら確実に連絡が取れる」という安心感が信頼関係の第一歩です。無理なく長く続けるためのルール設定を学びます。
+                    </p>
+                </div>
+
+                <!-- Point 7 -->
+                <div class="bg-white p-8 border border-theme-base hover:border-theme-accent/30 transition-all duration-300 reveal">
+                    <span class="text-theme-accent font-serif text-lg block mb-2">Point 07</span>
+                    <h3 class="text-xl font-bold mb-4 text-theme-dark border-b border-gray-100 pb-3">経歴（バックグラウンド）</h3>
+                    <p class="text-sm text-theme-muted leading-relaxed">
+                        会社員経験や過去の職歴は、ビジネスマナーの証明になります。自分の過去を「強み」や「数値実績」として翻訳し、信頼につなげるライティング技術。
+                    </p>
+                </div>
+
+                <!-- Point 8 -->
+                <div class="bg-white p-8 border border-theme-base hover:border-theme-accent/30 transition-all duration-300 reveal delay-100">
+                    <span class="text-theme-accent font-serif text-lg block mb-2">Point 08</span>
+                    <h3 class="text-xl font-bold mb-4 text-theme-dark border-b border-gray-100 pb-3">刺さる自己PR</h3>
+                    <p class="text-sm text-theme-muted leading-relaxed">
+                        ただの熱意だけでは響きません。「採用した際にどんな未来を提供できるか」。クライアント目線に立った、シンプルかつインパクトのあるPR作成法。
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center">
+                 <a href="#contact" class="inline-block bg-theme-dark text-white px-10 py-4 rounded-sm hover:bg-theme-accent transition-colors duration-300 shadow-lg tracking-wide font-medium">
+                    講座の詳細を問い合わせる
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile Section -->
+    <section id="profile" class="py-24 bg-white border-t border-theme-base">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center gap-12 reveal">
+                <div class="w-full md:w-1/3 shrink-0">
+                    <div class="relative">
+                        <!-- Image Frame Decoration -->
+                        <div class="absolute -top-4 -left-4 w-full h-full border border-theme-accent z-0"></div>
+                        <!-- REPLACE: Profile Image -->
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="yukii_work" class="relative z-10 w-full h-auto aspect-[3/4] object-cover bg-gray-100 shadow-lg">
+                    </div>
+                </div>
+                <div class="w-full md:w-2/3">
+                    <span class="text-theme-accent font-bold tracking-widest text-xs uppercase mb-2 block">Instructor</span>
+                    <h2 class="text-3xl font-serif text-theme-dark mb-6">yukii_work <span class="text-lg font-sans font-normal text-theme-muted ml-2">（うぱ）</span></h2>
+                    <div class="space-y-4 text-theme-text leading-relaxed">
+                        <p>
+                            はじめまして。うぱと申します。<br>
+                            これまで多くの案件に携わりながら、多くの駆け出しクリエイターさんの相談に乗ってきました。
+                        </p>
+                        <p>
+                            スキルはあるのに、伝え方で損をしている人が本当に多い。<br>
+                            そんな「もったいない」をなくし、自信を持ってクライアントと向き合える人を増やしたいという想いでこの講座を運営しています。
+                        </p>
+                        <p>
+                            ただ稼ぐだけでなく、クライアントも自分も大切にできる。<br>
+                            そんな「息の長いクリエイター」を一緒に目指しましょう。
+                        </p>
+                    </div>
+                    <!-- SNS Links -->
+                    <div class="mt-8 flex gap-4">
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="text-theme-muted hover:text-theme-accent transition-colors">
+                            <span class="sr-only">Instagram</span>
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="text-theme-muted hover:text-theme-accent transition-colors">
+                            <span class="sr-only">Twitter</span>
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="py-24 bg-theme-dark text-white relative">
+        <div class="max-w-3xl mx-auto px-6 text-center relative z-10 reveal">
+            <h2 class="text-3xl md:text-5xl font-serif mb-8 leading-tight">
+                さあ、プロへの一歩を<br>
+                踏み出しませんか？
+            </h2>
+            <p class="text-gray-400 mb-12 text-sm md:text-base">
+                まずはLINE公式アカウントで、<br>
+                講座の詳細や「選ばれる秘訣」をチェックしてみてください。<br>
+                無理な勧誘はありませんので、お気軽にどうぞ。
+            </p>
+            <a href="https://line.me/R/ti/p/@example" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-[#06c755] hover:bg-[#05b34c] text-white min-w-[280px] px-8 py-5 rounded-sm transition-all duration-300 transform hover:scale-105 shadow-xl group">
+                <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .5C5.648.5.5 5.148.5 10.88c0 3.25 1.637 6.182 4.195 8.134-.182.72-.656 2.63-1.487 3.998-.12.197.085.44.293.35 1.838-.797 4.856-2.106 5.806-2.617.844.135 1.723.208 2.616.208 6.348 0 11.5-4.648 11.5-10.38S18.348.5 12 .5z"/></svg>
+                <span class="text-lg font-bold tracking-wide">LINEで無料相談する</span>
+            </a>
+            <p class="mt-6 text-xs text-gray-500">※ クリックするとLINEアプリが開きます</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#111] text-gray-500 py-10 border-t border-white/5">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-sm">
+                &copy; 2026 うぱ講座 All Rights Reserved.
+            </div>
+            <div class="flex gap-6 text-sm">
+                <a href="#" class="hover:text-white transition-colors">特定商取引法に基づく表記</a>
+                <a href="#" class="hover:text-white transition-colors">プライバシーポリシー</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Interactions -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Intersection Observer for Scroll Animations
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // ラインアニメーションなどが子要素にある場合も考慮
+                        const lines = entry.target.querySelectorAll('.line-growth');
+                        lines.forEach(line => line.classList.add('active'));
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const revealElements = document.querySelectorAll('.reveal');
+            revealElements.forEach(el => observer.observe(el));
+
+            // Smooth Scroll for Anchor Links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        // Header height adjustment
+                        const headerHeight = document.getElementById('header').offsetHeight;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+            
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+                    }
+                });
+            });
+
+            // Header Scroll Effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('shadow-md');
+                    header.classList.replace('bg-theme-light/90', 'bg-theme-light/95');
+                } else {
+                    header.classList.remove('shadow-md');
+                    header.classList.replace('bg-theme-light/95', 'bg-theme-light/90');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
