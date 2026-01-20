@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鋼鉄の涙 - 絶対に鼻をかめないティッシュ | 公式サイト</title>
+    <meta name="description" content="もう、優しくなんてしない。世界初、モース硬度10を誇る「絶対に鼻をかめないティッシュ」。観賞用、護身用、そして一生モノのインテリアとして。">
+    
+    <!-- Google Fonts: Noto Serif JP (明朝体) + Cormorant Garamond (英語見出し用) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Serif+JP:wght@200;400;600;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Noto Serif JP"', 'serif'],
+                        serif_en: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Helvetica Neue"', 'Arial', 'sans-serif'],
+                    },
+                    colors: {
+                        sumi: '#1a1a1a',      /* 墨色 */
+                        bg: '#fcfaf2',        /* 生成り色（和紙） */
+                        nav_bg: '#f3f2ed',    /* ナビゲーション背景 */
+                        gold: '#b79b5b',      /* 落ち着いた金 */
+                        gold_accent: '#d4af37', /* アクセントゴールド */
+                        accent: '#9e2e23',    /* 錆朱 */
+                        sub: '#595857',       /* 鈍色 */
+                        text_main: '#44403c', /* テキストカラー */
+                    },
+                    backgroundImage: {
+                        'washi': "url('https://raw.githubusercontent.com/kenshiro0909/site-test/main/assets/キラキラティッシュ.png')",
+                    },
+                    letterSpacing: {
+                        'widest-xl': '0.25em',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles */
+        body {
+            font-family: 'Noto Serif JP', serif;
+            background-color: #fcfaf2;
+            color: #1a1a1a;
+            overflow-x: hidden;
+        }
+
+        /* 和紙テクスチャオーバーレイ */
+        .texture-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://raw.githubusercontent.com/kenshiro0909/site-test/main/assets/キラキラティッシュ.png');
+            opacity: 0.6;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* 縦書きクラス */
+        .tategaki {
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+            letter-spacing: 0.15em;
+            line-height: 2.5;
+        }
+
+        /* アニメーション関連 */
+        .fade-in-up, .reveal-elem {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .fade-in-up.visible, .reveal-elem.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-slow {
+            opacity: 0;
+            transition: opacity 2s ease;
+        }
+        
+        .fade-in-slow.visible {
+            opacity: 1;
+        }
+
+        .reveal-img {
+            clip-path: inset(0 100% 0 0);
+            transition: clip-path 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        
+        .reveal-img.visible {
+            clip-path: inset(0 0 0 0);
+        }
+
+        /* 縦書きボタンのホバーエフェクト */
+        .btn-vertical {
+            transition: all 0.5s ease;
+        }
+        .btn-vertical:hover {
+            background-color: #1a1a1a;
+            color: #fcfaf2;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        /* ナビゲーションリンクのホバーエフェクト */
+        .nav-link {
+            position: relative;
+            display: inline-block;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -4px;
+            left: 0;
+            background-color: #d4af37;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* スムーズスクロール無効化（JSで制御するため） */
+        html {
+            scroll-behavior: auto;
+        }
+
+        /* カスタムスクロールバー */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fcfaf2;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #b79b5b;
+        }
+    </style>
+</head>
+<body class="antialiased relative text-text_main">
+
+    <!-- 背景テクスチャ（全画面固定） -->
+    <div class="texture-overlay"></div>
+
+    <!-- ローディング画面 -->
+    <div id="loader" class="fixed inset-0 z-[100] bg-sumi flex items-center justify-center transition-opacity duration-1000">
+        <div class="text-center">
+            <div class="inline-block w-16 h-16 border-2 border-gold/30 border-t-gold rounded-full animate-spin mb-4"></div>
+            <p class="text-gold text-sm tracking-[0.3em] font-light">読み込み中...</p>
+        </div>
+    </div>
+
+    <!-- モバイル用メニューボタン -->
+    <button id="mobile-menu-btn" class="fixed top-6 right-6 z-50 md:hidden text-sumi w-10 h-10 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-md shadow-sm border border-gold/20">
+        <i class="fa-solid fa-bars text-xl"></i>
+    </button>
+
+    <!-- サイドバーナビゲーション (Navigation Component) -->
+    <aside id="sidebar" class="fixed top-0 left-0 h-full w-72 bg-nav_bg border-r border-gold/20 z-40 transform -translate-x-full md:translate-x-0 transition-transform duration-500 ease-in-out flex flex-col justify-between py-12 px-8 shadow-2xl md:shadow-none">
+        <!-- Logo Area -->
+        <div class="flex flex-col items-center">
+            <div class="w-12 h-12 border border-gold_accent rotate-45 flex items-center justify-center mb-6">
+                <div class="w-8 h-8 bg-sumi rotate-45"></div>
+            </div>
+            <h1 class="font-serif font-bold text-2xl tracking-[0.2em] text-sumi mb-2">鋼鉄の涙</h1>
+            <p class="font-serif_en text-gold_accent text-sm tracking-widest uppercase">The Steel Tear</p>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="flex flex-col items-center gap-8 w-full">
+            <a href="#concept" class="nav-link font-serif_en text-lg tracking-widest text-text_main hover:text-gold_accent group flex items-center gap-3">
+                <span class="text-xs opacity-50 group-hover:opacity-100 transition-opacity">01.</span> CONCEPT
+            </a>
+            <a href="#features" class="nav-link font-serif_en text-lg tracking-widest text-text_main hover:text-gold_accent group flex items-center gap-3">
+                <span class="text-xs opacity-50 group-hover:opacity-100 transition-opacity">02.</span> FEATURES
+            </a>
+            <a href="#specs" class="nav-link font-serif_en text-lg tracking-widest text-text_main hover:text-gold_accent group flex items-center gap-3">
+                <span class="text-xs opacity-50 group-hover:opacity-100 transition-opacity">03.</span> SPECS
+            </a>
+            <a href="#order" class="mt-4 px-8 py-3 bg-sumi text-white font-serif tracking-[0.2em] text-sm hover:bg-gold_accent transition-colors rounded-sm shadow-md w-full text-center">
+                予約注文
+            </a>
+        </nav>
+
+        <!-- Footer / SNS -->
+        <div class="flex flex-col items-center gap-6">
+            <div class="flex gap-4 text-text_main/60">
+                <a href="#" class="hover:text-gold_accent transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="hover:text-gold_accent transition-colors"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="hover:text-gold_accent transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+            </div>
+            <p class="text-[10px] text-text_main/40 font-serif_en tracking-widest">&copy; 2024 STEEL TEAR</p>
+        </div>
+    </aside>
+
+    <!-- モバイル用オーバーレイ -->
+    <div id="mobile-overlay" class="fixed inset-0 bg-sumi/50 z-30 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"></div>
+
+    <main class="relative z-10 md:ml-72 transition-all duration-500">
+
+        <!-- HERO SECTION -->
+        <section class="relative w-full h-screen flex items-center justify-center overflow-hidden bg-sumi">
+            <!-- 背景画像（パララックス） -->
+            <!-- Image: 暗い液体金属、あるいは墨のような抽象的なテクスチャ -->
+            <div class="absolute inset-0 z-0 opacity-60">
+                <img src="https://raw.githubusercontent.com/kenshiro0909/site-test/main/assets/キラキラティッシュ.png" 
+                     alt="液体金属の質感" 
+                     class="w-full h-full object-cover scale-110" id="hero-bg">
+                <div class="absolute inset-0 bg-gradient-to-b from-sumi/30 via-transparent to-sumi/90"></div>
+            </div>
+            
+            <!-- コンテンツ -->
+            <div class="relative z-10 container mx-auto px-6 h-full flex flex-col items-center justify-center text-center">
+                
+                <!-- キャッチコピー（横書き・中央揃え） -->
+                <div class="mb-12 relative">
+                    <!-- 装飾的な背景文字 -->
+                    <span class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[10rem] md:text-[15rem] font-serif text-white/5 pointer-events-none select-none whitespace-nowrap">
+                        HARD
+                    </span>
+
+                    <p class="text-gold tracking-[0.4em] text-sm md:text-base font-bold mb-8 fade-in-up uppercase">
+                        The World's Hardest Tissue
+                    </p>
+                    
+                    <h2 class="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight tracking-widest drop-shadow-2xl fade-in-up" style="transition-delay: 0.2s;">
+                        もう、<br>優しくなんてしない。
+                    </h2>
+                    
+                    <div class="flex items-center justify-center gap-4 my-10 fade-in-up" style="transition-delay: 0.3s;">
+                        <div class="w-12 h-[1px] bg-gold"></div>
+                        <div class="w-2 h-2 border border-gold rotate-45"></div>
+                        <div class="w-12 h-[1px] bg-gold"></div>
+                    </div>
+
+                    <p class="text-xl md:text-3xl text-gray-200 font-bold tracking-widest fade-in-up" style="transition-delay: 0.4s;">
+                        絶対に鼻をかめない<br class="md:hidden">ティッシュ。
+                    </p>
+                </div>
+
+                <div class="text-gray-400 text-sm tracking-widest leading-loose max-w-lg fade-in-up" style="transition-delay: 0.6s;">
+                    鋼鉄の強度が、あなたの涙を弾き返す。<br>
+                    世界初、観賞用ティッシュ誕生。
+                </div>
+
+            </div>
+            
+            <!-- スクロールダウン -->
+            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 animate-bounce">
+                <span class="text-[10px] tracking-[0.2em] text-white">SCROLL</span>
+                <div class="w-[1px] h-12 bg-white"></div>
+            </div>
+        </section>
+
+        <!-- AUTHORITY / CONCEPT SECTION -->
+        <section id="concept" class="py-24 md:py-32 bg-bg relative">
+            <div class="container mx-auto px-6 max-w-5xl">
+                <div class="flex flex-col md:flex-row gap-12 items-start md:items-stretch">
+                    
+                    <!-- 左側：縦書き見出し -->
+                    <div class="md:w-1/4 flex justify-center md:justify-end reveal-elem">
+                        <h3 class="tategaki text-2xl md:text-3xl font-bold text-sumi leading-relaxed tracking-widest border-r border-sumi/10 pr-8 py-4">
+                            業界が震感。<br>常識への挑戦状。
+                        </h3>
+                    </div>
+
+                    <!-- 右側：本文 -->
+                    <div class="md:w-3/4 pt-4 md:pt-12 reveal-elem delay-200">
+                        <p class="text-base md:text-lg leading-loose text-sub font-medium mb-8">
+                            柔らかさ、吸水性、肌触り。<br>
+                            これまでのティッシュが追い求めてきた「機能」を、我々はすべて捨て去った。<br><br>
+                            求めたのは、<span class="text-sumi font-bold border-b border-gold">圧倒的な「硬度」</span>と<span class="text-sumi font-bold border-b border-gold">「美」</span>のみ。<br>
+                            NASA素材研究チームも注目する（予定の）、最先端テクノロジーと伝統工芸の融合。<br>
+                            これはもはや日用品ではない。あなたのデスクを支配する、崇高なオブジェである。
+                        </p>
+                        
+                        <!-- 実績バッジ（家紋風） -->
+                        <div class="flex flex-wrap gap-6 mt-12 border-t border-sumi/10 pt-8">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 border border-sumi flex items-center justify-center rounded-full bg-white">
+                                    <span class="text-xl">硬</span>
+                                </div>
+                                <div class="text-xs tracking-wider">
+                                    <span class="block text-gray-400">HARDNESS</span>
+                                    <span class="block font-bold">モース硬度 10</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 border border-sumi flex items-center justify-center rounded-full bg-white">
+                                    <span class="text-xl">水</span>
+                                </div>
+                                <div class="text-xs tracking-wider">
+                                    <span class="block text-gray-400">WATER PROOF</span>
+                                    <span class="block font-bold">吸水率 0.00%</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 border border-sumi flex items-center justify-center rounded-full bg-white">
+                                    <span class="text-xl">金</span>
+                                </div>
+                                <div class="text-xs tracking-wider">
+                                    <span class="block text-gray-400">AWARD</span>
+                                    <span class="block font-bold">世界過酷展 金賞</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURES SECTION -->
+        <section id="features" class="py-24 bg-white relative overflow-hidden">
+            <!-- 縦の罫線装飾 -->
+            <div class="absolute top-0 left-12 w-[1px] h-full bg-sumi/5 hidden md:block"></div>
+            <div class="absolute top-0 right-12 w-[1px] h-full bg-sumi/5 hidden md:block"></div>
+
+            <div class="container mx-auto px-6 max-w-6xl">
+                <div class="text-center mb-20 reveal-elem">
+                    <span class="text-gold text-xs tracking-[0.3em] block mb-4 font-serif_en">FEATURES</span>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold tracking-widest text-sumi">
+                        三つの絶対領域
+                    </h2>
+                </div>
+
+                <!-- Feature 1 -->
+                <div class="flex flex-col md:flex-row items-center gap-12 mb-32 group">
+                    <div class="md:w-1/2 w-full relative reveal-img">
+                        <div class="aspect-[4/3] bg-gray-200 overflow-hidden relative">
+                            <!-- Image: 鋭い結晶、ダイヤモンドの接写 -->
+                            <img src="https://raw.githubusercontent.com/kenshiro0909/site-test/main/assets/Gemini_Generated_Image_xozb0fxozb0fxozb.png" 
+                                 alt="鋭利な硬度" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-sumi/10 mix-blend-multiply"></div>
+                        </div>
+                        <div class="absolute -bottom-6 -right-6 text-8xl text-gray-100 font-serif font-bold -z-10 select-none">
+                            壱
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 md:pl-10 reveal-elem">
+                        <h3 class="text-2xl font-bold mb-4 flex items-center gap-4">
+                            <span class="w-8 h-[1px] bg-gold"></span>
+                            金剛石被覆
+                            <span class="text-xs font-normal text-gray-400 ml-2 font-serif_en">DIAMOND COATING</span>
+                        </h3>
+                        <p class="text-sub leading-loose text-justify">
+                            鼻を近づけた瞬間、本能が警告する圧倒的な硬度。
+                            表面にはマイクロ・ダイヤモンドコーティングを施し、一切の摩擦を許さない。
+                            柔らかさを求める軟弱な心ごとかき消す、冷徹なまでの硬さを実現しました。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="flex flex-col md:flex-row-reverse items-center gap-12 mb-32 group">
+                    <div class="md:w-1/2 w-full relative reveal-img">
+                        <div class="aspect-[4/3] bg-gray-200 overflow-hidden relative">
+                            <!-- Image: 黒い表面上の水滴、撥水イメージ -->
+                            <img src="https://raw.githubusercontent.com/kenshiro0909/site-test/main/assets/撥水てぃっしぃ.png" 
+                                 alt="完全撥水" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                             <div class="absolute inset-0 bg-sumi/10 mix-blend-multiply"></div>
+                        </div>
+                        <div class="absolute -bottom-6 -left-6 text-8xl text-gray-100 font-serif font-bold -z-10 select-none">
+                            弐
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 md:pr-10 reveal-elem">
+                        <h3 class="text-2xl font-bold mb-4 flex items-center gap-4">
+                            <span class="w-8 h-[1px] bg-gold"></span>
+                            完全撥水
+                            <span class="text-xs font-normal text-gray-400 ml-2 font-serif_en">WATER REPELLENT</span>
+                        </h3>
+                        <p class="text-sub leading-loose text-justify">
+                            涙も、鼻水も、すべて弾き返す。<br>
+                            「吸い取る」というティッシュの概念を根底から覆す、驚異の撥水性。
+                            何も吸収しない。何も受け入れない。ただそこに在るだけの、孤高の存在です。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="flex flex-col md:flex-row items-center gap-12 group">
+                    <div class="md:w-1/2 w-full relative reveal-img">
+                        <div class="aspect-[4/3] bg-gray-200 overflow-hidden relative">
+                            <!-- Image: ダークメタル、カーボンファイバーの質感 -->
+                            <img src="https://raw.githubusercontent.com/kenshiro0909/site-test/main/assets/kagayaki.png" 
+                                 alt="金属の質感" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                             <div class="absolute inset-0 bg-sumi/10 mix-blend-multiply"></div>
+                        </div>
+                        <div class="absolute -bottom-6 -right-6 text-8xl text-gray-100 font-serif font-bold -z-10 select-none">
+                            参
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 md:pl-10 reveal-elem">
+                        <h3 class="text-2xl font-bold mb-4 flex items-center gap-4">
+                            <span class="w-8 h-[1px] bg-gold"></span>
+                            永劫の輝き
+                            <span class="text-xs font-normal text-gray-400 ml-2 font-serif_en">ETERNITY</span>
+                        </h3>
+                        <p class="text-sub leading-loose text-justify">
+                            使い捨て文化へのアンチテーゼ。<br>
+                            チタン合金とカーボンファイバーの複合素材は、錆びることなく、朽ちることなく、孫の代まで受け継がれます。
+                            「一生モノのティッシュ」という、かつてない価値体験をあなたに。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAIN CTA -->
+        <section class="py-32 bg-sumi text-bg relative overflow-hidden flex flex-col items-center justify-center text-center">
+            <!-- 背景装飾 -->
+            <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/asfalt-dark.png')]"></div>
+            
+            <div class="relative z-10 container mx-auto px-6 reveal-elem">
+                <p class="text-gold tracking-[0.5em] mb-6 text-sm font-serif_en">INVITATION</p>
+                <h2 class="text-3xl md:text-5xl font-bold leading-normal mb-12 tracking-wider">
+                    観賞用として、<br>お迎えください。
+                </h2>
+                
+                <a href="#order" class="btn-vertical inline-block bg-bg text-sumi px-8 py-20 text-xl font-bold tracking-[0.5em] tategaki border border-gold relative overflow-hidden group">
+                    <span class="relative z-10">予約注文ノ儀</span>
+                    <div class="absolute inset-0 bg-gold transform scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100 z-0"></div>
+                </a>
+                
+                <p class="mt-8 text-sm text-gray-400 tracking-widest">
+                    ※現在、お届けまで三ヶ月待ち
+                </p>
+            </div>
+        </section>
+
+        <!-- SPECS & REVIEWS -->
+        <section id="specs" class="py-24 bg-bg relative">
+            <div class="container mx-auto px-6 max-w-4xl">
+                
+                <!-- Specs -->
+                <div class="mb-24 reveal-elem">
+                    <h3 class="text-center text-2xl font-bold mb-12 flex items-center justify-center gap-4">
+                        <span class="w-12 h-[1px] bg-sumi"></span>
+                        仕様書
+                        <span class="w-12 h-[1px] bg-sumi"></span>
+                    </h3>
+                    
+                    <dl class="border-t border-sumi/20">
+                        <div class="grid grid-cols-3 border-b border-sumi/20 py-6">
+                            <dt class="col-span-1 font-bold text-sumi pl-4 border-l-4 border-gold">主素材</dt>
+                            <dd class="col-span-2 text-sub">チタン合金（玉鋼処理）、カーボンファイバー</dd>
+                        </div>
+                        <div class="grid grid-cols-3 border-b border-sumi/20 py-6">
+                            <dt class="col-span-1 font-bold text-sumi pl-4 border-l-4 border-gold">重量</dt>
+                            <dd class="col-span-2 text-sub">250g / 枚（文鎮として最適）</dd>
+                        </div>
+                        <div class="grid grid-cols-3 border-b border-sumi/20 py-6">
+                            <dt class="col-span-1 font-bold text-sumi pl-4 border-l-4 border-gold">用途</dt>
+                            <dd class="col-span-2 text-sub">観賞用、インテリア、文鎮、護身用<br><span class="text-xs text-red-800">※鼻をかむ行為は推奨されません</span></dd>
+                        </div>
+                        <div class="grid grid-cols-3 border-b border-sumi/20 py-6">
+                            <dt class="col-span-1 font-bold text-sumi pl-4 border-l-4 border-gold">生産国</dt>
+                            <dd class="col-span-2 text-sub">日本（燕三条 提携工場）</dd>
+                        </div>
+                    </dl>
+                </div>
+
+                <!-- Reviews -->
+                <div class="reveal-elem">
+                    <h3 class="text-center text-2xl font-bold mb-16 flex items-center justify-center gap-4">
+                        <span class="w-12 h-[1px] bg-sumi"></span>
+                        愛用者の声
+                        <span class="w-12 h-[1px] bg-sumi"></span>
+                    </h3>
+
+                    <div class="flex flex-wrap justify-center gap-8">
+                        <!-- Review 1 -->
+                        <div class="w-full md:w-auto bg-white p-8 shadow-lg border-t-2 border-gold relative max-w-sm">
+                            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-sumi text-white px-4 py-1 text-xs tracking-widest">
+                                30代 男性 / 武道家
+                            </div>
+                            <div class="flex flex-row-reverse h-48 justify-center gap-6">
+                                <p class="tategaki text-lg font-bold leading-relaxed text-sumi">
+                                    鼻をかもうとして<br>怪我をしましたが、<br>その美しさに<br>感動しました。
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Review 2 -->
+                        <div class="w-full md:w-auto bg-white p-8 shadow-lg border-t-2 border-gold relative max-w-sm">
+                            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-sumi text-white px-4 py-1 text-xs tracking-widest">
+                                50代 女性 / 主婦
+                            </div>
+                            <div class="flex flex-row-reverse h-48 justify-center gap-6">
+                                <p class="tategaki text-lg font-bold leading-relaxed text-sumi">
+                                    泥棒が入った時、<br>これで撃退できました。<br>まさに命の恩人です。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FINAL OFFER (CLOSING) -->
+        <section id="order" class="py-32 bg-gray-100 relative">
+            <div class="container mx-auto px-6 max-w-5xl">
+                <div class="bg-white shadow-2xl overflow-hidden flex flex-col md:flex-row">
+                    <!-- Image -->
+                    <div class="md:w-1/2 relative min-h-[400px]">
+                        <!-- Image: 美術館の展示ケースやガラスボックス -->
+                        <img src="https://images.unsplash.com/photo-1554907984-15263bfd63bd?auto=format&fit=crop&q=80&w=1000" 
+                             alt="ディスプレイスタンド" class="absolute inset-0 w-full h-full object-cover grayscale transition-all hover:grayscale-0">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-8">
+                            <span class="bg-gold text-white px-3 py-1 text-xs inline-block w-max mb-2">今ダケ特典</span>
+                            <p class="text-white font-bold text-lg">専用ディスプレイスタンド（強化ガラス製）</p>
+                            <p class="text-gray-300 text-sm">これに入れて飾れば、リビングが美術館に。</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Offer Content -->
+                    <div class="md:w-1/2 p-10 md:p-16 flex flex-col justify-center items-center text-center">
+                        <h2 class="text-2xl font-bold mb-2">鋼鉄の涙 <span class="text-sm font-normal block mt-1 font-serif_en">THE STEEL TEAR</span></h2>
+                        <div class="w-12 h-[2px] bg-gold my-6"></div>
+                        
+                        <div class="mb-8">
+                            <p class="text-gray-400 line-through text-sm">通常価格 12,800円</p>
+                            <p class="text-4xl md:text-5xl font-bold text-accent font-serif mt-2">
+                                <span class="text-xl text-sumi mr-2">セット価格</span>9,800<span class="text-base text-sumi ml-1">円（税込）</span>
+                            </p>
+                        </div>
+
+                        <a href="#" class="w-full bg-sumi text-white py-5 text-lg font-bold tracking-widest hover:bg-gold transition-colors shadow-xl mb-4 group">
+                            購入手続キへ進ム
+                            <span class="block text-[10px] font-normal tracking-normal text-gray-400 group-hover:text-white mt-1">※外部決済ページへ移動します</span>
+                        </a>
+                        
+                        <p class="text-xs text-gray-500 leading-relaxed text-justify mt-4">
+                            ※本製品はジョークグッズ、あるいは高度な工芸品です。実際に鼻をかむと怪我をする恐れがあります。使用による損害について、当社は一切の責任を負いません。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="bg-sumi text-gray-500 py-16 border-t border-gray-800">
+            <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="tategaki h-24 text-sm tracking-widest border-l border-gray-700 pl-4">
+                    鋼鉄の涙製作所
+                </div>
+                
+                <div class="flex flex-col md:flex-row gap-8 text-xs tracking-wider">
+                    <a href="#" class="hover:text-gold transition-colors">特定商取引法に基づく表記</a>
+                    <a href="#" class="hover:text-gold transition-colors">プライバシーポリシー</a>
+                    <a href="#" class="hover:text-gold transition-colors">お問い合わせ</a>
+                </div>
+                
+                <p class="text-xs font-serif_en tracking-widest">
+                    &copy; 2024 Steel Tear Project. All Rights Reserved.
+                </p>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- Animation Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Loading Animation
+            const loader = document.getElementById('loader');
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 1000);
+            }, 1500);
+
+            // Intersection Observer for Animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            const animatedElements = document.querySelectorAll('.fade-in-up, .fade-in-slow, .reveal-elem, .reveal-img');
+            animatedElements.forEach(el => observer.observe(el));
+
+            // Parallax Effect for Hero
+            window.addEventListener('scroll', () => {
+                const scrolled = window.scrollY;
+                const heroBg = document.getElementById('hero-bg');
+                if (heroBg) {
+                    heroBg.style.transform = `scale(1.1) translateY(${scrolled * 0.4}px)`;
+                }
+            });
+
+            // Mobile Menu Logic
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('mobile-overlay');
+            const navLinks = document.querySelectorAll('.nav-link, aside a[href="#order"]');
+
+            function toggleMenu() {
+                const isClosed = sidebar.classList.contains('-translate-x-full');
+                
+                if (isClosed) {
+                    // Open
+                    sidebar.classList.remove('-translate-x-full');
+                    overlay.style.pointerEvents = 'auto';
+                    overlay.style.opacity = '1';
+                    mobileMenuBtn.innerHTML = '<i class="fa-solid fa-xmark text-xl"></i>';
+                } else {
+                    // Close
+                    sidebar.classList.add('-translate-x-full');
+                    overlay.style.pointerEvents = 'none';
+                    overlay.style.opacity = '0';
+                    mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars text-xl"></i>';
+                }
+            }
+
+            mobileMenuBtn.addEventListener('click', toggleMenu);
+            overlay.addEventListener('click', toggleMenu);
+            
+            // Close menu when link is clicked
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth < 768) { // Only on mobile
+                        toggleMenu();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
