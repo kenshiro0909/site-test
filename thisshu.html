@@ -221,7 +221,8 @@
             <!-- 背景画像（パララックス） -->
             <!-- Image: 暗い液体金属、あるいは墨のような抽象的なテクスチャ -->
             <div class="absolute inset-0 z-0 opacity-60">
-                <img src="https://raw.githubusercontent.com/kenshiro0909/site-test/main/assets/kirakirathishyu.png" 
+                <!-- 修正: 画像リンクを指定のもの(kirakira.png)に変更 -->
+                <img src="https://raw.githubusercontent.com/kenshiro0909/site-test/main/assets/kirakira.png" 
                      alt="液体金属の質感" 
                      class="w-full h-full object-cover scale-110" id="hero-bg">
                 <div class="absolute inset-0 bg-gradient-to-b from-sumi/30 via-transparent to-sumi/90"></div>
@@ -346,8 +347,10 @@
                     <div class="md:w-1/2 w-full relative reveal-img">
                         <div class="aspect-[4/3] bg-gray-200 overflow-hidden relative">
                             <!-- Image: 鋭い結晶、ダイヤモンドの接写 -->
+                            <!-- 修正: onerror削除 -->
                             <img src="https://raw.githubusercontent.com/kenshiro0909/site-test/main/assets/Gemini_Generated_Image_xozb0fxozb0fxozb.png" 
-                                 alt="鋭利な硬度" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                 alt="鋭利な硬度" 
+                                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                             <div class="absolute inset-0 bg-sumi/10 mix-blend-multiply"></div>
                         </div>
                         <div class="absolute -bottom-6 -right-6 text-8xl text-gray-100 font-serif font-bold -z-10 select-none">
@@ -373,8 +376,10 @@
                     <div class="md:w-1/2 w-full relative reveal-img">
                         <div class="aspect-[4/3] bg-gray-200 overflow-hidden relative">
                             <!-- Image: 黒い表面上の水滴、撥水イメージ -->
+                            <!-- 修正: 画像リンクが正しい場合、onerrorがあると誤動作することがあるため削除 -->
                             <img src="https://raw.githubusercontent.com/kenshiro0909/site-test/main/assets/hassui.png" 
-                                 alt="完全撥水" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                 alt="完全撥水" 
+                                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                              <div class="absolute inset-0 bg-sumi/10 mix-blend-multiply"></div>
                         </div>
                         <div class="absolute -bottom-6 -left-6 text-8xl text-gray-100 font-serif font-bold -z-10 select-none">
@@ -400,8 +405,10 @@
                     <div class="md:w-1/2 w-full relative reveal-img">
                         <div class="aspect-[4/3] bg-gray-200 overflow-hidden relative">
                             <!-- Image: ダークメタル、カーボンファイバーの質感 -->
+                            <!-- 修正: onerror削除 -->
                             <img src="https://raw.githubusercontent.com/kenshiro0909/site-test/main/assets/kagayaki.png" 
-                                 alt="金属の質感" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                 alt="金属の質感" 
+                                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                              <div class="absolute inset-0 bg-sumi/10 mix-blend-multiply"></div>
                         </div>
                         <div class="absolute -bottom-6 -right-6 text-8xl text-gray-100 font-serif font-bold -z-10 select-none">
