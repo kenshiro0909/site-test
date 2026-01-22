@@ -99,13 +99,16 @@
             opacity: 1;
         }
 
+        /* 修正: clip-pathによる切り取りアニメーションを廃止し、安全なフェードインに変更 */
         .reveal-img {
-            clip-path: inset(0 100% 0 0);
-            transition: clip-path 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 1.2s ease, transform 1.2s ease;
         }
         
         .reveal-img.visible {
-            clip-path: inset(0 0 0 0);
+            opacity: 1;
+            transform: scale(1);
         }
 
         /* 縦書きボタンのホバーエフェクト */
@@ -221,7 +224,6 @@
             <!-- 背景画像（パララックス） -->
             <!-- Image: 暗い液体金属、あるいは墨のような抽象的なテクスチャ -->
             <div class="absolute inset-0 z-0 opacity-60">
-                <!-- 修正: 画像リンクを指定のもの(kirakira.png)に変更 -->
                 <img src="https://raw.githubusercontent.com/kenshiro0909/site-test/main/assets/kirakira.png" 
                      alt="液体金属の質感" 
                      class="w-full h-full object-cover scale-110" id="hero-bg">
@@ -347,8 +349,7 @@
                     <div class="md:w-1/2 w-full relative reveal-img">
                         <div class="aspect-[4/3] bg-gray-200 overflow-hidden relative">
                             <!-- Image: 鋭い結晶、ダイヤモンドの接写 -->
-                            <!-- 修正: onerror削除 -->
-                            <img src="./assets/kirakirakagayaku.jpg" 
+                            <img src="https://raw.githubusercontent.com/kenshiro0909/site-test/main/assets/kirakirakagayaku.jpg" 
                                  alt="鋭利な硬度" 
                                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                             <div class="absolute inset-0 bg-sumi/10 mix-blend-multiply"></div>
@@ -376,8 +377,7 @@
                     <div class="md:w-1/2 w-full relative reveal-img">
                         <div class="aspect-[4/3] bg-gray-200 overflow-hidden relative">
                             <!-- Image: 黒い表面上の水滴、撥水イメージ -->
-                            <!-- 修正: 画像リンクが正しい場合、onerrorがあると誤動作することがあるため削除 -->
-                            <img src="./assets/hassusisugoi.jpg" 
+                            <img src="https://raw.githubusercontent.com/kenshiro0909/site-test/main/assets/hassusisugoi.jpg" 
                                  alt="完全撥水" 
                                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                              <div class="absolute inset-0 bg-sumi/10 mix-blend-multiply"></div>
@@ -405,8 +405,7 @@
                     <div class="md:w-1/2 w-full relative reveal-img">
                         <div class="aspect-[4/3] bg-gray-200 overflow-hidden relative">
                             <!-- Image: ダークメタル、カーボンファイバーの質感 -->
-                            <!-- 修正: onerror削除 -->
-                            <img src="./assets/katai.jpg" 
+                            <img src="https://raw.githubusercontent.com/kenshiro0909/site-test/main/assets/katai.jpg" 
                                  alt="金属の質感" 
                                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                              <div class="absolute inset-0 bg-sumi/10 mix-blend-multiply"></div>
