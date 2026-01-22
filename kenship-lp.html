@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORTUNE TELLING CLUB - ケンシプ占い部 カリキュラム</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Shippori+Mincho:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #0f172a;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, .serif {
+            font-family: 'Shippori Mincho', serif;
+        }
+
+        .gold-text {
+            color: #fbbf24;
+            background: linear-gradient(45deg, #fbbf24, #d97706);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gold-border {
+            border-color: #d97706;
+        }
+
+        .section-bg {
+            background-image: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+        }
+
+        .star-bg {
+            background-color: #0f172a;
+            background-image: 
+                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 3px),
+                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 2px),
+                radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 3px);
+            background-size: 550px 550px, 350px 350px, 250px 250px;
+            background-position: 0 0, 40px 60px, 130px 270px;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #475569; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #fbbf24; 
+        }
+
+        .card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Button Glow Effect */
+        .btn-glow {
+            box-shadow: 0 0 15px rgba(251, 191, 36, 0.3);
+            transition: all 0.3s ease;
+        }
+        .btn-glow:hover {
+            box-shadow: 0 0 25px rgba(251, 191, 36, 0.6);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header Navigation -->
+    <header class="fixed w-full z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-700">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="text-xl font-bold serif text-amber-400">FORTUNE TELLING CLUB</div>
+            <nav class="hidden md:flex items-center space-x-6 text-sm">
+                <a href="#roadmap" class="hover:text-amber-400 transition">全体像</a>
+                <a href="#account" class="hover:text-amber-400 transition">アカウント</a>
+                <a href="#strategy" class="hover:text-amber-400 transition">戦略</a>
+                <a href="#format" class="hover:text-amber-400 transition">鑑定書</a>
+                <a href="#threads" class="hover:text-amber-400 transition">Threads</a>
+                <!-- Header CTA Button -->
+                <a href="#" class="bg-gradient-to-r from-amber-600 to-amber-500 text-white px-4 py-2 rounded-full font-bold hover:from-amber-500 hover:to-amber-400 transition text-xs shadow-lg">
+                    申し込み
+                </a>
+            </nav>
+            <button class="md:hidden text-amber-400" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-800 border-t border-slate-700">
+            <div class="flex flex-col p-4 space-y-3 text-center">
+                <a href="#roadmap" class="block hover:text-amber-400">全体像</a>
+                <a href="#account" class="block hover:text-amber-400">アカウント</a>
+                <a href="#strategy" class="block hover:text-amber-400">戦略</a>
+                <a href="#format" class="block hover:text-amber-400">鑑定書</a>
+                <a href="#threads" class="block hover:text-amber-400">Threads</a>
+                <a href="#" class="block bg-amber-600 text-white py-2 rounded font-bold mt-2">申し込み</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section 1: Hero -->
+    <section class="min-h-screen flex items-center justify-center star-bg pt-16 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-slate-900 pointer-events-none"></div>
+        <div class="container mx-auto px-4 text-center relative z-10" data-aos="fade-up" data-aos-duration="1500">
+            <div class="mb-4 inline-block px-4 py-1 border border-amber-500 rounded-full text-amber-400 text-sm tracking-widest">
+                ケンシプ占い部
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                FORTUNE<br>
+                TELLING<br>
+                <span class="gold-text">CLUB</span>
+            </h1>
+            <h2 class="text-2xl md:text-3xl font-serif mb-8 border-t border-b border-slate-600 py-4 inline-block">
+                カリキュラム
+            </h2>
+            <p class="text-lg md:text-xl text-slate-300 mb-2">
+                7日間で占い師デビューの基盤を完成
+            </p>
+            <p class="text-slate-400 mb-8">
+                対象：初・中級者の占い実践者 | 期間：1〜7日目
+            </p>
+            
+            <!-- Hero CTA Button -->
+            <div class="mb-12">
+                <a href="#" class="btn-glow inline-block bg-gradient-to-r from-amber-600 to-amber-500 text-white font-bold text-lg px-8 py-4 rounded-full">
+                    カリキュラムに申し込む <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+
+            <div>
+                <a href="#roadmap" class="animate-bounce inline-block text-amber-400">
+                    <i class="fas fa-chevron-down text-3xl"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Roadmap -->
+    <section id="roadmap" class="py-20 bg-slate-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <!-- Removed # symbol -->
+                <h2 class="text-3xl font-bold mb-4 serif">全体像と進め方</h2>
+                <p class="text-slate-400 tracking-widest uppercase">7 Days Roadmap</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-16 max-w-4xl mx-auto">
+                <div class="card p-6 rounded-lg" data-aos="fade-right">
+                    <h3 class="text-xl font-bold text-amber-400 mb-2"><i class="fas fa-user-check mr-2"></i>自律的な意思決定</h3>
+                    <p>ある程度「自分で決める」姿勢を持つ</p>
+                </div>
+                <div class="card p-6 rounded-lg" data-aos="fade-left">
+                    <h3 class="text-xl font-bold text-amber-400 mb-2"><i class="fas fa-comments mr-2"></i>即相談の徹底</h3>
+                    <p>一人で悩まず、詰まったらすぐに共有</p>
+                </div>
+            </div>
+
+            <!-- Fixed Roadmap Overlap: Removed pl-8 from container, added pl-10 and relative to children -->
+            <div class="relative max-w-3xl mx-auto border-l-2 border-slate-700 ml-4 md:ml-auto space-y-12">
+                <div data-aos="fade-up" class="relative pl-10">
+                    <span class="absolute -left-3 top-1 w-6 h-6 bg-amber-500 rounded-full border-4 border-slate-900"></span>
+                    <h3 class="text-2xl font-bold text-white">Day 1-2</h3>
+                    <h4 class="text-xl text-amber-400 mb-2">アカウント構築 & 基盤整備</h4>
+                    <p class="text-slate-300">ショップ開設・オプチャ・公式LINE・Threads・プロフィール設計<br>※コンセプトと占術決定も含む</p>
+                </div>
+                <div data-aos="fade-up" class="relative pl-10">
+                    <span class="absolute -left-3 top-1 w-6 h-6 bg-slate-600 rounded-full border-4 border-slate-900"></span>
+                    <h3 class="text-2xl font-bold text-white">Day 3</h3>
+                    <h4 class="text-xl text-amber-400 mb-2">鑑定書フォーマット</h4>
+                    <p class="text-slate-300">システム自由・簡易デザイン<br>「型」を先に完成させる</p>
+                </div>
+                <div data-aos="fade-up" class="relative pl-10">
+                    <span class="absolute -left-3 top-1 w-6 h-6 bg-slate-600 rounded-full border-4 border-slate-900"></span>
+                    <h3 class="text-2xl font-bold text-white">Day 4</h3>
+                    <h4 class="text-xl text-amber-400 mb-2">鑑定書の中身作成</h4>
+                    <p class="text-slate-300">5000〜8000字の叩き台<br>占術に合わせた内容構成</p>
+                </div>
+                <div data-aos="fade-up" class="relative pl-10">
+                    <span class="absolute -left-3 top-1 w-6 h-6 bg-slate-600 rounded-full border-4 border-slate-900"></span>
+                    <h3 class="text-2xl font-bold text-white">Day 5</h3>
+                    <h4 class="text-xl text-amber-400 mb-2">ミニ鑑定フォーマット</h4>
+                    <p class="text-slate-300">オプチャ内での企画用<br>短時間で回せる仕組み作り</p>
+                </div>
+                <div data-aos="fade-up" class="relative pl-10">
+                    <span class="absolute -left-3 top-1 w-6 h-6 bg-slate-600 rounded-full border-4 border-slate-900"></span>
+                    <h3 class="text-2xl font-bold text-white">Day 7</h3>
+                    <h4 class="text-xl text-amber-400 mb-2">Threads投稿文</h4>
+                    <p class="text-slate-300">認知拡大の第一歩<br>プロフへの導線を意識した発信</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Account Construction -->
+    <section id="account" class="py-20 section-bg">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <!-- Removed # symbol -->
+                <h2 class="text-3xl font-bold mb-4 serif">アカウント構築</h2>
+                <p>まずは自分の「店」と「看板」を整える（締切: 2日目終日）</p>
+            </div>
+
+            <div class="bg-amber-900/20 border border-amber-500/30 rounded-lg p-6 mb-12 max-w-4xl mx-auto text-center" data-aos="zoom-in">
+                <h3 class="text-xl font-bold text-amber-400 mb-2">Day 1-2 到達目標</h3>
+                <p class="text-lg font-bold mb-4">全アカウントの開設完了と基本設定（連携）の終了</p>
+                <div class="text-sm bg-slate-800 p-4 rounded inline-block text-left">
+                    <p class="font-bold text-red-400"><i class="fas fa-exclamation-circle"></i> SOSルール</p>
+                    <p>設置やシステム連携で詰まったら、一人で悩まずにすぐに相談チャットへ！<br>技術的なトラブルは即解決しましょう。</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="card p-6 rounded-xl hover:-translate-y-2 transition duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-4xl text-amber-500 mb-4"><i class="fas fa-store"></i></div>
+                    <h3 class="text-xl font-bold mb-3 border-b border-slate-600 pb-2">ショップ開設</h3>
+                    <!-- Fixed list class: removed list-inside, added pl-5 -->
+                    <ul class="space-y-2 text-slate-300 text-sm list-disc pl-5">
+                        <li>販売メニュー登録</li>
+                        <li>価格・決済設定</li>
+                        <li>ショップ説明文の整備</li>
+                    </ul>
+                </div>
+                <!-- Card 2 -->
+                <div class="card p-6 rounded-xl hover:-translate-y-2 transition duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-4xl text-amber-500 mb-4"><i class="fas fa-comments"></i></div>
+                    <h3 class="text-xl font-bold mb-3 border-b border-slate-600 pb-2">オプチャ (OpenChat)</h3>
+                    <!-- Fixed list class: removed list-inside, added pl-5 -->
+                    <ul class="space-y-2 text-slate-300 text-sm list-disc pl-5">
+                        <li>参加規約の策定</li>
+                        <li>固定投稿・案内文の作成</li>
+                        <li>プロフィールからの導線確保</li>
+                    </ul>
+                </div>
+                <!-- Card 3 -->
+                <div class="card p-6 rounded-xl hover:-translate-y-2 transition duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-4xl text-green-500 mb-4"><i class="fab fa-line"></i></div>
+                    <h3 class="text-xl font-bold mb-3 border-b border-slate-600 pb-2">公式LINE</h3>
+                    <!-- Fixed list class: removed list-inside, added pl-5 -->
+                    <ul class="space-y-2 text-slate-300 text-sm list-disc pl-5">
+                        <li>アカウント開設</li>
+                        <li>自動応答メッセージ設定</li>
+                        <li>簡易リッチメニュー・タグ設定</li>
+                    </ul>
+                </div>
+                <!-- Card 4 -->
+                <div class="card p-6 rounded-xl hover:-translate-y-2 transition duration-300" data-aos="fade-up" data-aos-delay="400">
+                    <div class="text-4xl text-white mb-4 bg-black w-10 h-10 flex items-center justify-center rounded-full text-lg"><i class="fab fa-threads"></i></div>
+                    <h3 class="text-xl font-bold mb-3 border-b border-slate-600 pb-2">Threads (スレッズ)</h3>
+                    <!-- Fixed list class: removed list-inside, added pl-5 -->
+                    <ul class="space-y-2 text-slate-300 text-sm list-disc pl-5">
+                        <li>新規開設 または 転生</li>
+                        <li>ユーザー名の統一感</li>
+                        <li>プロフ欄へのリンク集設置</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-12 card p-8 rounded-lg max-w-3xl mx-auto" data-aos="fade-up">
+                <h3 class="text-2xl font-serif text-center mb-6">プロフィール & コンセプト設計</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <div>
+                            <span class="text-amber-400 font-bold block">1行コンセプト</span>
+                            <span class="text-slate-300">誰に何を提供する占い師か</span>
+                        </div>
+                        <div>
+                            <span class="text-amber-400 font-bold block">提供価値</span>
+                            <span class="text-slate-300">どんな未来・安心を得られるか</span>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <span class="text-amber-400 font-bold block">実績・資格</span>
+                            <span class="text-slate-300">信頼性の担保</span>
+                        </div>
+                        <div>
+                            <span class="text-amber-400 font-bold block">CTA</span>
+                            <span class="text-slate-300">次に何をすべきかの誘導</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Strategy -->
+    <section id="strategy" class="py-20 bg-slate-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <!-- Removed # symbol -->
+                <h2 class="text-3xl font-bold mb-4 serif">占術選択とコンセプト設計</h2>
+                <p class="mb-2">自分の武器を定義し、誰に届けるかを明確にする</p>
+                <p class="text-slate-400 tracking-widest uppercase text-sm">Strategy & Concept</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Left Column -->
+                <div data-aos="fade-right">
+                    <h3 class="text-2xl font-bold text-amber-400 mb-6 border-l-4 border-amber-500 pl-4">占術の軸</h3>
+                    <p class="mb-4 text-lg">占術は複数掛け合わせてください。相性の善し悪しなどは各自調査してください。</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-4 py-2 bg-slate-800 border border-slate-600 rounded-full">タロット</span>
+                        <span class="px-4 py-2 bg-slate-800 border border-slate-600 rounded-full">四柱推命</span>
+                        <span class="px-4 py-2 bg-slate-800 border border-slate-600 rounded-full">数秘術</span>
+                        <span class="px-4 py-2 bg-slate-800 border border-slate-600 rounded-full">ヒーリング</span>
+                    </div>
+                    <div class="p-4 bg-red-900/20 border border-red-500/30 rounded text-red-200 text-sm">
+                        <i class="fas fa-exclamation-triangle mr-2"></i>注意: 基盤を作ったあとでの相談のみ受け付けます。一から一緒には考えません。
+                    </div>
+
+                    <div class="mt-8 bg-slate-800 p-6 rounded-lg border border-slate-700">
+                        <h4 class="font-bold text-amber-400 mb-2">コンセプト例</h4>
+                        <!-- Fixed list class: removed list-inside, added pl-5 -->
+                        <ul class="list-disc pl-5 space-y-2 text-slate-300">
+                            <li>「3枚引きで決断を後押しするタロット占い」</li>
+                            <li>「四柱推命×数秘術でみる、あなたの天職と適正時期診断」</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div data-aos="fade-left">
+                    <h3 class="text-2xl font-bold text-amber-400 mb-6 border-l-4 border-amber-500 pl-4">コンセプト設計の3要素</h3>
+                    <div class="space-y-6">
+                        <div class="card p-4 rounded">
+                            <h4 class="font-bold text-white mb-1">Target（誰に）</h4>
+                            <p class="text-slate-400 text-sm mb-1">誰のどんな悩みに応えるか。</p>
+                            <p class="text-slate-300 text-sm">例：恋愛、復縁、適職、自己理解、人間関係など。</p>
+                        </div>
+                        <div class="card p-4 rounded">
+                            <h4 class="font-bold text-white mb-1">Positioning（強み）</h4>
+                            <p class="text-slate-400 text-sm mb-1">差別化ポイントは何か。</p>
+                            <p class="text-slate-300 text-sm">例：スピリチュアル×現実的、短時間で核心、癒やし重視。</p>
+                        </div>
+                        <div class="card p-4 rounded">
+                            <h4 class="font-bold text-white mb-1">Menu（商品設計）</h4>
+                            <p class="text-slate-400 text-sm mb-1">提供形態と価格帯。</p>
+                            <p class="text-slate-300 text-sm">例：単発/継続、オプション有無、所要時間、松竹梅。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center" data-aos="fade-up">
+                <div class="inline-block border border-amber-500 rounded-lg p-6 bg-slate-800/50">
+                    <h3 class="text-xl font-bold text-white mb-4">質問・相談のルール</h3>
+                    <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+                        <div class="text-slate-400">自分案を作成</div>
+                        <i class="fas fa-arrow-right text-amber-500 hidden md:block"></i>
+                        <i class="fas fa-arrow-down text-amber-500 md:hidden"></i>
+                        <div class="text-slate-400">「これで良いか」相談</div>
+                    </div>
+                    <p class="mt-4 text-sm text-slate-300 bg-slate-900 p-3 rounded">
+                        「どうすればいいですか？」ではなく、<br>
+                        <span class="text-amber-400 font-bold">「このように決めましたが、どう詰めればよいですか？」</span><br>
+                        という形で相談してください。一緒にブラッシュアップします。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Format -->
+    <section id="format" class="py-20 section-bg">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <!-- Removed # symbol -->
+                <h2 class="text-3xl font-bold mb-4 serif">鑑定書フォーマット作成</h2>
+                <p>中身を書く前に「伝わる型」を固める（ツール自由）</p>
+            </div>
+
+            <div class="flex justify-center mb-12" data-aos="fade-up">
+                <div class="bg-amber-500 text-slate-900 font-bold px-6 py-2 rounded-full shadow-lg">
+                    Day 3 到達目標：鑑定書の雛形（フォーマット）を作成し、提出する
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="card p-8 rounded-lg border-t-4 border-amber-500" data-aos="fade-right">
+                    <h3 class="text-2xl font-serif text-white mb-6">必須項目</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="text-amber-400 font-bold mb-2">① 基本</h4>
+                            <p class="text-slate-300 text-sm">表紙（タイトル・依頼者名・日付）<br>依頼内容（相談文）の再掲<br>自己紹介（軽く）</p>
+                        </div>
+                        <div>
+                            <h4 class="text-amber-400 font-bold mb-2">② 鑑定</h4>
+                            <p class="text-slate-300 text-sm">サマリー（結論・要点）<br>本文（占術的根拠と詳細解釈）<br>分かりやすい見出し</p>
+                        </div>
+                        <div>
+                            <h4 class="text-amber-400 font-bold mb-2">③ 結び</h4>
+                            <p class="text-slate-300 text-sm">提案（具体的なアクション）<br>免責事項・注意事項<br>お礼の言葉</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-6" data-aos="fade-left">
+                    <div class="card p-6 rounded-lg">
+                        <h3 class="text-xl font-bold text-white mb-4"><i class="fas fa-palette mr-2 text-amber-500"></i>デザインの注意点</h3>
+                        <p class="text-slate-300 mb-2">あまり凝る必要はありません。<br>背景はシンプルにし、<span class="text-amber-400 font-bold">可読性（読みやすさ）を最優先</span>にしてください。</p>
+                        <h4 class="text-sm font-bold text-slate-400 mt-4 mb-2">デザイン方針</h4>
+                        <!-- Fixed list class: removed list-inside, added pl-5 -->
+                        <ul class="list-disc pl-5 text-sm text-slate-300">
+                            <li>余白を多めに取る</li>
+                            <li>背景は白か薄い色でシンプルに</li>
+                            <li>文字サイズでメリハリをつける</li>
+                        </ul>
+                    </div>
+
+                    <div class="card p-6 rounded-lg">
+                        <h3 class="text-xl font-bold text-white mb-4"><i class="fas fa-file-export mr-2 text-amber-500"></i>作成と提出</h3>
+                        <ul class="space-y-2 text-sm text-slate-300">
+                            <li><span class="font-bold text-slate-400">ツール:</span> 自由（Google Docs, Notion, Canva, Word等）</li>
+                            <li><span class="font-bold text-slate-400">段階:</span> 中身はダミーでOK、まずは枠を作る</li>
+                            <li><span class="font-bold text-slate-400">提出形式:</span> 「これで良いですか？」と確認依頼</li>
+                            <li><span class="font-bold text-slate-400">目的:</span> 手戻りを防ぐための早期チェック</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Content Creation -->
+    <section id="content" class="py-20 bg-slate-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <!-- Removed # symbol -->
+                <h2 class="text-3xl font-bold mb-4 serif">4日目: 鑑定書の中身作成</h2>
+                <p>占術に応じた「伝わる」鑑定文を執筆する</p>
+                <p class="text-slate-400 tracking-widest uppercase text-sm mt-2">Drafting Phase</p>
+                <div class="mt-4 inline-block bg-slate-800 px-4 py-1 rounded text-amber-400 font-mono">目標文字数: 5,000 〜 8,000文字</div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+                <!-- Tarot -->
+                <div class="card p-6 rounded hover:bg-slate-800 transition" data-aos="fade-up" data-aos-delay="0">
+                    <h3 class="text-lg font-bold text-amber-400 mb-4 border-b border-slate-700 pb-2">タロット</h3>
+                    <!-- Fixed list class: removed list-inside, added pl-5 -->
+                    <ol class="list-decimal pl-5 space-y-2 text-sm text-slate-300">
+                        <li>展開法（スプレッド）の説明</li>
+                        <li>各カードの個別解釈</li>
+                        <li>カード間の相互関係・流れ</li>
+                        <li>総合的な結論</li>
+                        <li>具体的な行動提案</li>
+                    </ol>
+                </div>
+                <!-- Four Pillars -->
+                <div class="card p-6 rounded hover:bg-slate-800 transition" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-lg font-bold text-amber-400 mb-4 border-b border-slate-700 pb-2">四柱推命</h3>
+                    <!-- Fixed list class: removed list-inside, added pl-5 -->
+                    <ol class="list-decimal pl-5 space-y-2 text-sm text-slate-300">
+                        <li>命式の提示</li>
+                        <li>通変星・十二運の解説</li>
+                        <li>大運・流年の運気バイオリズム</li>
+                        <li>総合的な性質・運勢判断</li>
+                        <li>開運アドバイス</li>
+                    </ol>
+                </div>
+                <!-- Numerology -->
+                <div class="card p-6 rounded hover:bg-slate-800 transition" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-lg font-bold text-amber-400 mb-4 border-b border-slate-700 pb-2">数秘術</h3>
+                    <!-- Fixed list class: removed list-inside, added pl-5 -->
+                    <ol class="list-decimal pl-5 space-y-2 text-sm text-slate-300">
+                        <li>ライフパス（本質）</li>
+                        <li>ディスティニー（使命）</li>
+                        <li>個人周期（現在の運気）</li>
+                        <li>総合リーディング</li>
+                        <li>今意識すべきアクション</li>
+                    </ol>
+                </div>
+                <!-- Healing -->
+                <div class="card p-6 rounded hover:bg-slate-800 transition" data-aos="fade-up" data-aos-delay="300">
+                    <h3 class="text-lg font-bold text-amber-400 mb-4 border-b border-slate-700 pb-2">ヒーリング</h3>
+                    <!-- Fixed list class: removed list-inside, added pl-5 -->
+                    <ol class="list-decimal pl-5 space-y-2 text-sm text-slate-300">
+                        <li>現状のエネルギー評価</li>
+                        <li>施術方針と実施内容</li>
+                        <li>施術中に感じたこと</li>
+                        <li>セルフケアの方法</li>
+                        <li>今後の経過観察ポイント</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="bg-slate-800 p-8 rounded-lg" data-aos="fade-up">
+                <h3 class="text-2xl font-bold text-white mb-6 text-center">書き方のポイント</h3>
+                <div class="grid md:grid-cols-4 gap-6 text-center">
+                    <div>
+                        <div class="text-4xl text-amber-500 font-bold mb-2">1</div>
+                        <h4 class="font-bold text-white mb-2">結論ファースト</h4>
+                        <p class="text-sm text-slate-400">最初に相談者の知りたい「答え」を提示する</p>
+                    </div>
+                    <div>
+                        <div class="text-4xl text-amber-500 font-bold mb-2">2</div>
+                        <h4 class="font-bold text-white mb-2">根拠の明示</h4>
+                        <p class="text-sm text-slate-400">「なぜそう言えるのか」を占術用語で補足</p>
+                    </div>
+                    <div>
+                        <div class="text-4xl text-amber-500 font-bold mb-2">3</div>
+                        <h4 class="font-bold text-white mb-2">禁則事項の回避</h4>
+                        <p class="text-sm text-slate-400">生死、病気、ギャンブル、合否の断定はNG</p>
+                    </div>
+                    <div>
+                        <div class="text-4xl text-amber-500 font-bold mb-2">4</div>
+                        <h4 class="font-bold text-white mb-2">行動提案</h4>
+                        <p class="text-sm text-slate-400">「で、どうすればいいか」を具体的に示す</p>
+                    </div>
+                </div>
+                <div class="mt-8 pt-6 border-t border-slate-700 text-center">
+                    <span class="font-bold text-amber-400 mr-2">品質チェック:</span>
+                    <span class="text-slate-300 text-sm">誤字脱字・てにをは / 専門用語の解説 / 論理の一貫性 / 読みやすい改行</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Mini Format -->
+    <section id="mini" class="py-20 section-bg">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <!-- Removed # symbol -->
+                <h2 class="text-3xl font-bold mb-4 serif">ミニ鑑定フォーマット</h2>
+                <p>オプチャ内で短時間で価値提供し交流を促進する</p>
+            </div>
+
+            <div class="mb-12 text-center" data-aos="fade-up">
+                <div class="inline-block bg-slate-800 p-4 rounded-lg border border-slate-700">
+                    <h3 class="text-amber-400 font-bold mb-2">Day 5 目的</h3>
+                    <p>ライトな体験版として相談者の信頼を獲得し、本鑑定への導線を作る</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="card p-6 rounded-lg" data-aos="fade-right">
+                    <h3 class="text-xl font-bold text-white mb-4 border-l-4 border-amber-500 pl-3">運用ルール</h3>
+                    <!-- Fixed list class: removed list-inside, added pl-5 -->
+                    <ul class="list-disc pl-5 space-y-2 text-slate-300">
+                        <li>1人10分以内で完結させる</li>
+                        <li>免責事項を必ず明記</li>
+                        <li>再質問の可否（基本は不可）</li>
+                        <li>受付数・返信順の管理</li>
+                    </ul>
+                    <h3 class="text-xl font-bold text-white mt-6 mb-4 border-l-4 border-amber-500 pl-3">想定シーン</h3>
+                    <!-- Fixed list class: removed list-inside, added pl-5 -->
+                    <ul class="list-disc pl-5 space-y-2 text-slate-300">
+                        <li>オープンチャット内での無料体験</li>
+                        <li>抽選プレゼント企画</li>
+                        <li>定期お題（今週の運勢など）</li>
+                    </ul>
+                </div>
+
+                <div class="card p-6 rounded-lg" data-aos="fade-left">
+                    <h3 class="text-xl font-bold text-white mb-4 border-l-4 border-amber-500 pl-3">テンプレート</h3>
+                    <div class="space-y-4">
+                        <div class="bg-slate-900/50 p-3 rounded">
+                            <h4 class="text-amber-400 font-bold text-sm">受付テンプレート</h4>
+                            <p class="text-xs text-slate-400">お名前（ハンドルネーム可）<br>お悩みカテゴリ（恋愛・仕事）<br>必要情報（生年月日・性別等）</p>
+                        </div>
+                        <div class="bg-slate-900/50 p-3 rounded">
+                            <h4 class="text-amber-400 font-bold text-sm">回答テンプレート</h4>
+                            <p class="text-xs text-slate-400">結論（まずはズバリ答える）<br>根拠（カードや命式の特徴）<br>一言アドバイス（120〜200字）</p>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <h4 class="font-bold text-white mb-2">導線設計（CTA）</h4>
+                        <p class="text-sm text-slate-300">回答文末にリンクを設置 / ショップ／公式LINEへ誘導 / 「深掘りは本鑑定で」と案内</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-slate-800 p-4 rounded text-center text-sm text-slate-300" data-aos="fade-up">
+                <span class="font-bold text-amber-400">注意点とポイント:</span> 短時間完結: 1件に時間をかけすぎない / 言葉選び: 誰でも見れる場でネガティブNG / 公平性: エコひいきに見えない工夫 / 目的意識: あくまで「お試し」であること
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8: Threads -->
+    <section id="threads" class="py-20 bg-black">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <!-- Removed # symbol -->
+                <h2 class="text-3xl font-bold mb-4 serif">7日目: Threads投稿文</h2>
+                <p>認知拡大と導線設計のための投稿戦略</p>
+                <p class="text-slate-500 tracking-widest uppercase text-sm mt-1">Day 7 Strategy</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-16">
+                <!-- Basic Policy -->
+                <div class="col-span-1 md:col-span-3 lg:col-span-1 card p-6 rounded-lg border-t-4 border-white" data-aos="fade-up">
+                    <h3 class="text-xl font-bold text-white mb-4">基本方針</h3>
+                    <dl class="space-y-4">
+                        <div>
+                            <dt class="text-amber-400 font-bold text-sm">目的</dt>
+                            <dd class="text-slate-300">認知拡大・見込み客のファン化</dd>
+                        </div>
+                        <div>
+                            <dt class="text-amber-400 font-bold text-sm">投稿頻度</dt>
+                            <dd class="text-slate-300">1日 1〜3本（継続が鍵）</dd>
+                        </div>
+                        <div>
+                            <dt class="text-amber-400 font-bold text-sm">投稿比率</dt>
+                            <dd class="text-slate-300">価値提供 7 : 告知・宣伝 3</dd>
+                        </div>
+                        <div>
+                            <dt class="text-amber-400 font-bold text-sm">固定投稿</dt>
+                            <dd class="text-slate-300">無料ミニ鑑定・自己紹介を固定</dd>
+                        </div>
+                    </dl>
+                    <div class="mt-4 p-3 bg-red-900/30 border border-red-800 rounded text-xs text-red-200">
+                        注意事項:<br>・規約遵守（ガイドライン必読）<br>・「絶対当たる」等の誇大表現NG<br>・外部リンクばかり貼らない
+                    </div>
+                </div>
+
+                <!-- Variations -->
+                <div class="col-span-1 md:col-span-3 lg:col-span-2 space-y-6">
+                    <div class="grid md:grid-cols-3 gap-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="bg-slate-900 p-4 rounded text-center">
+                            <h4 class="font-bold text-white mb-2">Daily（日常・占い）</h4>
+                            <p class="text-xs text-slate-400">今日の1枚、ラッキーカラー、今週の運勢など。<br>手軽に見れて反応しやすい内容。</p>
+                        </div>
+                        <div class="bg-slate-900 p-4 rounded text-center">
+                            <h4 class="font-bold text-white mb-2">Knowledge（知見）</h4>
+                            <p class="text-xs text-slate-400">占いの用語解説、よくある質問(Q&A)、開運アクション。<br>専門性を示し信頼を得る。</p>
+                        </div>
+                        <div class="bg-slate-900 p-4 rounded text-center">
+                            <h4 class="font-bold text-white mb-2">Trust（実績・共感）</h4>
+                            <p class="text-xs text-slate-400">鑑定のご感想（スクショ）、制作裏話、占い師の想い。<br>人柄を伝えファンを作る。</p>
+                        </div>
+                    </div>
+
+                    <div class="card p-6 rounded-lg" data-aos="fade-up" data-aos-delay="200">
+                        <h3 class="text-xl font-bold text-white mb-4"><i class="fas fa-pen-fancy mr-2 text-amber-500"></i>鉄板投稿テンプレート</h3>
+                        <!-- Fixed list class: removed list-inside, added pl-5 -->
+                        <ol class="list-decimal pl-5 space-y-4 text-slate-300">
+                            <li>
+                                <span class="font-bold text-white">導入（共感）</span><br>
+                                <span class="text-sm ml-5 block text-slate-400">「最近〜で悩んでいませんか？」「実はこの時期…」と興味を惹く</span>
+                            </li>
+                            <li>
+                                <span class="font-bold text-white">本文（知見）</span><br>
+                                <span class="text-sm ml-5 block text-slate-400">結論→理由。専門知識を噛み砕いて短く伝える（箇条書き推奨）</span>
+                            </li>
+                            <li>
+                                <span class="font-bold text-white">CTA（導線）</span><br>
+                                <span class="text-sm ml-5 block text-slate-400">「詳しくは固定投稿へ」「タップしてフォロー」等、次の行動を促す</span>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center" data-aos="fade-up">
+                <h3 class="text-xl font-bold mb-4">プロフィール整備のポイント</h3>
+                <div class="inline-flex flex-wrap justify-center gap-4 text-sm">
+                    <span class="bg-slate-800 px-4 py-2 rounded-full border border-slate-600">① 1行コンセプト（誰のどんな悩みを解決するか）</span>
+                    <span class="bg-slate-800 px-4 py-2 rounded-full border border-slate-600">② 実績・資格（あれば）</span>
+                    <span class="bg-slate-800 px-4 py-2 rounded-full border border-slate-600">③ リンク集（Lit.Link等）を設置し、ショップ・LINEへ誘導</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 9: Summary -->
+    <section class="py-24 section-bg relative">
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-4xl mx-auto bg-slate-900/80 backdrop-blur-xl border border-amber-500/50 rounded-2xl p-8 md:p-12 shadow-2xl" data-aos="zoom-in">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold serif text-white mb-4">まとめとサポート体制</h2>
+                    <p class="text-slate-400">7日間の集中カリキュラム・完走に向けて</p>
+                </div>
+
+                <div class="text-center mb-10">
+                    <div class="inline-block bg-gradient-to-r from-amber-600 to-amber-500 text-white font-bold text-xl px-8 py-3 rounded-full shadow-lg">
+                        今週のGOAL: アカウント完成 ＋ 雛形提出 ＋ 叩き台作成
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 mb-10">
+                    <div>
+                        <h3 class="text-amber-400 font-bold mb-4 border-b border-slate-700 pb-2">提出物チェックリスト</h3>
+                        <ul class="space-y-2 text-slate-300">
+                            <li><i class="far fa-square mr-2"></i>ショップ開設・設定</li>
+                            <li><i class="far fa-square mr-2"></i>オプチャ開設・案内</li>
+                            <li><i class="far fa-square mr-2"></i>公式LINE開設</li>
+                            <li><i class="far fa-square mr-2"></i>Threads・プロフィール</li>
+                            <li><i class="far fa-square mr-2"></i>鑑定書 雛形提出</li>
+                            <li><i class="far fa-square mr-2"></i>鑑定書 叩き台 (8000字)</li>
+                            <li><i class="far fa-square mr-2"></i>ミニ鑑定フォーマット</li>
+                            <li><i class="far fa-square mr-2"></i>Threads 投稿文案</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-amber-400 font-bold mb-4 border-b border-slate-700 pb-2">徹底サポート内容</h3>
+                        <ul class="space-y-3 text-slate-300 text-sm">
+                            <li><strong class="text-white">個別レビュー:</strong> 提出いただいた雛形・叩き台を添削</li>
+                            <li><strong class="text-white">テンプレ配布:</strong> 迷ったら即使える素材を提供</li>
+                            <li><strong class="text-white">緊急対応:</strong> アカウント連携・設置トラブルの解決</li>
+                        </ul>
+                        <div class="mt-6 p-4 bg-slate-800 rounded border border-slate-700">
+                            <h4 class="font-bold text-white mb-2 text-sm">相談の鉄則</h4>
+                            <p class="text-xs text-slate-400">「一人で悩まない」こと。<br>ただし、「どうすれば？」ではなく、「こう決めたが、どうか？」という仮説を持って相談してください。スピード感が命です。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-12">
+                    <h3 class="text-2xl font-bold text-white mb-4 animate-pulse">Next Action: 今日中にアカウント着手！</h3>
+                    <p class="text-slate-300 mb-8">まずは手を動かし、明日までに「完了報告」をお願いします。</p>
+                    
+                    <!-- Final CTA Button -->
+                    <a href="#" class="btn-glow inline-block bg-gradient-to-r from-amber-600 to-amber-500 text-white font-bold text-lg px-10 py-4 rounded-full">
+                        今すぐ申し込む <i class="fas fa-check-circle ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black py-8 border-t border-slate-800 text-center text-slate-500 text-sm">
+        <p>© FORTUNE TELLING CLUB - ケンシプ占い部</p>
+    </footer>
+
+    <!-- AOS Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 100,
+            duration: 800,
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                // If it is a dummy link for application, do nothing
+                if(this.getAttribute('href') === '#') return;
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
