@@ -68,6 +68,17 @@
             text-align: center;
         }
 
+        /* 使い方カードのホバーアニメーション */
+        .step-card {
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .step-card:hover {
+            transform: translateY(-10px);
+            background: #ffffff;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent);
+        }
+
         /* プロンプトボックス（ダーク） */
         .prompt-box {
             background: #1e1e1e;
@@ -125,36 +136,35 @@
                 
                 <!-- 5 Steps Info -->
                 <div class="glass-card p-8 md:p-12 rounded-[3rem] mb-12 border-stone-200 relative pt-20 md:pt-24">
-                    <!-- Section Title inside Step 01 Area -->
+                    <!-- Section Title -->
                     <div class="absolute top-8 left-1/2 -translate-x-1/2 w-full text-center">
                         <h2 class="serif text-xl md:text-2xl font-bold text-stone-900 tracking-[0.3em] uppercase">プロンプトの使い方</h2>
                     </div>
 
-                    <div class="grid md:grid-cols-5 gap-4 mb-10">
-                        <div class="bg-stone-50 p-4 rounded-2xl text-center border border-stone-200 ring-2 ring-stone-900/5 shadow-inner">
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-10">
+                        <div class="step-card bg-stone-50 p-4 rounded-2xl text-center border border-stone-200 cursor-default">
                             <span class="step-number text-2xl block mb-2">01</span>
                             <p class="text-xs font-bold text-stone-800 tracking-tighter">NanoBanana<br>起動</p>
                         </div>
-                        <div class="bg-stone-50 p-4 rounded-2xl text-center border border-stone-100 text-stone-400">
-                            <span class="step-number text-2xl block mb-2 opacity-30">02</span>
-                            <p class="text-xs font-bold text-stone-800 tracking-tighter">コピー＆<br>貼り付け</p>
+                        <div class="step-card bg-stone-50 p-4 rounded-2xl text-center border border-stone-100 cursor-default">
+                            <span class="step-number text-2xl block mb-2">02</span>
+                            <p class="text-xs font-bold text-stone-800 tracking-tighter">プロンプト<br>のコピー</p>
                         </div>
-                        <div class="bg-stone-50 p-4 rounded-2xl text-center border border-stone-100">
-                            <span class="step-number text-2xl block mb-2">03</span>
-                            <p class="text-xs font-bold text-stone-800 tracking-tighter">アイコン<br>添付</p>
+                        <div class="step-card bg-stone-50 p-4 rounded-2xl text-center border border-stone-100 cursor-default">
+                            <span class="step-number text-2xl block mb-2 text-stone-400">03</span>
+                            <p class="text-xs font-bold text-stone-800 tracking-tighter">任意で<br>アイコン添付</p>
                         </div>
-                        <div class="bg-stone-50 p-4 rounded-2xl text-center border border-stone-100">
+                        <div class="step-card bg-stone-50 p-4 rounded-2xl text-center border border-stone-100 cursor-default">
                             <span class="step-number text-2xl block mb-2">04</span>
-                            <p class="text-xs font-bold text-stone-800 tracking-tighter">補足入力</p>
+                            <p class="text-xs font-bold text-stone-800 tracking-tighter">補足事項<br>の入力</p>
                         </div>
-                        <div class="bg-stone-50 p-4 rounded-2xl text-center border border-stone-100">
+                        <div class="step-card bg-stone-50 p-4 rounded-2xl text-center border border-stone-100 cursor-default col-span-2 md:col-span-1">
                             <span class="step-number text-2xl block mb-2">05</span>
-                            <p class="text-xs font-bold text-stone-800 tracking-tighter">送信</p>
+                            <p class="text-xs font-bold text-stone-800 tracking-tighter">生成（送信）<br>実行</p>
                         </div>
                     </div>
 
                     <div class="space-y-6 text-sm leading-relaxed text-stone-600">
-                        <!-- Message (removed internal line breaks as requested) -->
                         <div class="bg-amber-50 p-6 md:p-8 rounded-2xl border border-amber-100">
                             <p class="text-stone-800 font-bold mb-4 flex items-center gap-2 text-base">
                                 <svg class="w-5 h-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20"><path d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM5 10a1 1 0 01-1 1H3a1 1 0 110-2h1a1 1 0 011 1zM8 16v-1a1 1 0 112 0v1a1 1 0 11-2 0zM13.464 15.05a1 1 0 010 1.414l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 0z"></path></svg>
@@ -165,7 +175,6 @@
                             </p>
                         </div>
 
-                        <!-- Button before the troubleshooting card -->
                         <div class="py-6 text-center">
                             <a href="https://www.genspark.ai/agents?id=0613b73b-8ec8-4040-bb4b-c3bcbd2acc16" target="_blank" class="inline-flex items-center gap-3 px-12 py-5 bg-white border border-stone-200 text-stone-800 rounded-full font-bold hover:bg-stone-50 transition-all shadow-sm hover:shadow-md group">
                                 <svg class="w-5 h-5 text-stone-400 group-hover:text-stone-900 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
@@ -173,7 +182,6 @@
                             </a>
                         </div>
 
-                        <!-- Troubleshooting section with updated text -->
                         <div class="bg-stone-900 p-6 rounded-2xl text-stone-300 shadow-xl">
                             <p class="text-white font-bold mb-3 flex items-center gap-2">
                                 <svg class="w-4 h-4 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
@@ -211,7 +219,7 @@
 　　 謝罪の様子
 　　 女性ウケのいいデザインで
 　　 文字は1行で
-　　フォントは、手書き風で
+　　フォントは, 手書き風で
 …などなど何でも好きなのを任意でこちらには入力してください！！</p>
                             </div>
 
