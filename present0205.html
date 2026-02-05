@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プロンプト配布企画 [PR] | 上品で洗練されたイラスト生成</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --accent: #d4af37;
+            --accent-soft: rgba(212, 175, 55, 0.15);
+            --bg-soft: #fcfaf7;
+        }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-soft);
+            color: var(--primary);
+            overflow-x: hidden;
+        }
+        .serif { font-family: 'Noto Serif JP', serif; }
+        .montserrat { font-family: 'Montserrat', sans-serif; }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 30px 60px -20px rgba(0,0,0,0.08);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-in { opacity: 0; animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+        /* ヒーロー帯のデザイン */
+        .hero-strip {
+            height: 400px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero-strip::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1600');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            mix-blend-mode: overlay;
+        }
+        .hero-strip-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 40px 0;
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(5px);
+            text-align: center;
+        }
+
+        /* プロンプトボックス（ダーク） */
+        .prompt-box {
+            background: #1e1e1e;
+            border-radius: 1.5rem;
+            border: 1px solid #333;
+        }
+
+        /* ボタンの鼓動アニメーション */
+        @keyframes pulse-custom {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
+            70% { transform: scale(1.03); box-shadow: 0 0 0 15px rgba(220, 38, 38, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+        }
+        .animate-pulse-cta {
+            animation: pulse-custom 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+        }
+
+        .step-number {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1a1a1a 0%, #4a4a4a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="selection:bg-stone-200">
+
+    <!-- Header -->
+    <header class="fixed w-full z-50 bg-white/70 backdrop-blur-md border-b border-stone-100/50">
+        <div class="max-w-5xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="w-10"></div> 
+            <div class="serif text-xl font-bold tracking-widest text-stone-900">プロンプト配布企画</div>
+            <div class="text-[10px] font-bold text-stone-400 tracking-widest border border-stone-200 px-2 py-0.5 rounded uppercase">PR</div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pb-32">
+        
+        <!-- Professional Hero Section (Strip Design) -->
+        <section class="pt-20 mb-24 animate-in">
+            <div class="hero-strip">
+                <div class="hero-strip-content">
+                    <div class="montserrat text-white text-xs tracking-[0.6em] uppercase opacity-60 mb-2">Artistry & Logic</div>
+                    <div class="serif text-white text-3xl md:text-5xl font-bold tracking-[0.2em]">PROMPT DESIGN</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="max-w-4xl mx-auto px-6">
+            
+            <!-- USAGE INSTRUCTIONS ZONE -->
+            <div id="usage-zone" class="mb-32 animate-in" style="animation-delay: 0.2s">
+                
+                <!-- 5 Steps Info -->
+                <div class="glass-card p-8 md:p-12 rounded-[3rem] mb-12 border-stone-200 relative pt-20 md:pt-24">
+                    <!-- Section Title inside Step 01 Area -->
+                    <div class="absolute top-8 left-1/2 -translate-x-1/2 w-full text-center">
+                        <h2 class="serif text-xl md:text-2xl font-bold text-stone-900 tracking-[0.3em] uppercase">プロンプトの使い方</h2>
+                    </div>
+
+                    <div class="grid md:grid-cols-5 gap-4 mb-10">
+                        <div class="bg-stone-50 p-4 rounded-2xl text-center border border-stone-200 ring-2 ring-stone-900/5 shadow-inner">
+                            <span class="step-number text-2xl block mb-2">01</span>
+                            <p class="text-xs font-bold text-stone-800 tracking-tighter">NanoBanana<br>起動</p>
+                        </div>
+                        <div class="bg-stone-50 p-4 rounded-2xl text-center border border-stone-100 text-stone-400">
+                            <span class="step-number text-2xl block mb-2 opacity-30">02</span>
+                            <p class="text-xs font-bold text-stone-800 tracking-tighter">コピー＆<br>貼り付け</p>
+                        </div>
+                        <div class="bg-stone-50 p-4 rounded-2xl text-center border border-stone-100">
+                            <span class="step-number text-2xl block mb-2">03</span>
+                            <p class="text-xs font-bold text-stone-800 tracking-tighter">アイコン<br>添付</p>
+                        </div>
+                        <div class="bg-stone-50 p-4 rounded-2xl text-center border border-stone-100">
+                            <span class="step-number text-2xl block mb-2">04</span>
+                            <p class="text-xs font-bold text-stone-800 tracking-tighter">補足入力</p>
+                        </div>
+                        <div class="bg-stone-50 p-4 rounded-2xl text-center border border-stone-100">
+                            <span class="step-number text-2xl block mb-2">05</span>
+                            <p class="text-xs font-bold text-stone-800 tracking-tighter">送信</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6 text-sm leading-relaxed text-stone-600">
+                        <!-- Message (removed internal line breaks as requested) -->
+                        <div class="bg-amber-50 p-6 md:p-8 rounded-2xl border border-amber-100">
+                            <p class="text-stone-800 font-bold mb-4 flex items-center gap-2 text-base">
+                                <svg class="w-5 h-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20"><path d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM5 10a1 1 0 01-1 1H3a1 1 0 110-2h1a1 1 0 011 1zM8 16v-1a1 1 0 112 0v1a1 1 0 11-2 0zM13.464 15.05a1 1 0 010 1.414l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 0z"></path></svg>
+                                理想への最短ルート
+                            </p>
+                            <p class="text-stone-700 font-medium md:text-lg leading-relaxed">
+                                1度、理想の画像が出せると、それ以降はスムーズに出してくれるので、最初だけ粘って好みの画像が出るまで生成してください🥺
+                            </p>
+                        </div>
+
+                        <!-- Button before the troubleshooting card -->
+                        <div class="py-6 text-center">
+                            <a href="https://www.genspark.ai/agents?id=0613b73b-8ec8-4040-bb4b-c3bcbd2acc16" target="_blank" class="inline-flex items-center gap-3 px-12 py-5 bg-white border border-stone-200 text-stone-800 rounded-full font-bold hover:bg-stone-50 transition-all shadow-sm hover:shadow-md group">
+                                <svg class="w-5 h-5 text-stone-400 group-hover:text-stone-900 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                                参考のチャットを確認する
+                            </a>
+                        </div>
+
+                        <!-- Troubleshooting section with updated text -->
+                        <div class="bg-stone-900 p-6 rounded-2xl text-stone-300 shadow-xl">
+                            <p class="text-white font-bold mb-3 flex items-center gap-2">
+                                <svg class="w-4 h-4 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                                どうしても言う事を聞かない場合
+                            </p>
+                            <p class="mb-4 text-stone-400 text-sm">自分の寄せたいテイストの画像を添付して記憶させる。</p>
+                            <div class="p-4 bg-white/5 rounded-lg border border-white/10 font-mono text-xs text-white">
+                                「添付画像のように上品なテイストで」
+                            </div>
+                            <p class="mt-4 italic opacity-70 text-xs">チャット内で一度記憶させたら、下記にある『基本のプロンプト』を任意で中身を変更して送ってみてください。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROMPT SECTION 1: MASTER -->
+            <div id="master-prompt" class="animate-in mb-24" style="animation-delay: 0.4s">
+                <div class="flex flex-col items-center">
+                    <div class="glass-card rounded-[3rem] relative w-full mb-8">
+                        <div class="p-8 md:p-16">
+                            <div class="mb-10 text-center">
+                                <h2 class="serif text-3xl md:text-5xl font-bold text-stone-900 flex items-center justify-center gap-4">
+                                    <span class="w-8 h-[1px] bg-stone-200"></span>
+                                    基本のプロンプト
+                                    <span class="w-8 h-[1px] bg-stone-200"></span>
+                                </h2>
+                            </div>
+
+                            <div class="prompt-box p-6 md:p-10">
+                                <p class="text-sm md:text-base leading-relaxed text-stone-200 whitespace-pre-wrap text-left">｛ここに生成したい内容｝のみの文章で、別のデザインパターンでお願い。プロのイラストクリエイターとして、１６：９で有料コンテンツの画像を上品で洗練されたデザインで作ってください。なお、おしゃれな感じに仕上げること。
+キャラは、内容に合わせてポーズや表情は変えて構いません。　　　
+
+【補足があれば下記を入力】
+例）ネガティブな様子で
+　　 謝罪の様子
+　　 女性ウケのいいデザインで
+　　 文字は1行で
+　　フォントは、手書き風で
+…などなど何でも好きなのを任意でこちらには入力してください！！</p>
+                            </div>
+
+                            <div class="mt-12 flex flex-col items-center">
+                                <button onclick="copyText('master')" id="copyBtnMaster" class="group flex items-center gap-4 px-10 py-5 bg-stone-900 text-white rounded-full font-bold hover:bg-stone-800 transition-all shadow-xl active:scale-95 text-base">
+                                    <svg class="w-5 h-5 text-stone-400 group-hover:text-white transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                                    テンプレートをコピーする
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROMPT SECTION 2: USAGE EXAMPLE -->
+            <div id="example-prompt" class="animate-in mb-32" style="animation-delay: 0.6s">
+                <div class="glass-card rounded-[3rem] overflow-hidden relative bg-stone-50/50">
+                    <div class="aspect-video w-full overflow-hidden border-b border-stone-100 text-center flex items-center justify-center bg-stone-200">
+                        <img src="https://raw.githubusercontent.com/kenshiro0909/site-test/main/assets/sutanparigato.jpg" alt="使用例：みなさんスタンプありがとうの生成イメージ" class="w-full h-full object-cover">
+                    </div>
+
+                    <div class="p-8 md:p-16">
+                        <div class="mb-10 text-center">
+                            <h2 class="serif text-3xl md:text-5xl font-bold text-stone-800 flex items-center justify-center gap-4">
+                                <span class="w-8 h-[1px] bg-stone-300"></span>
+                                使用例のプロンプト
+                                <span class="w-8 h-[1px] bg-stone-300"></span>
+                            </h2>
+                        </div>
+
+                        <div class="prompt-box p-6 md:p-10">
+                            <p class="text-sm md:text-base leading-relaxed text-stone-200 font-medium whitespace-pre-wrap text-left">みなさん、スタンプありがとう
+
+のみの文章で、別のデザインパターンでお願い。プロのイラストクリエイターとして、１６：９で有料コンテンツの画像を上品で洗練されたデザインで作ってください。なお、おしゃれな感じに仕上げること。
+キャラは、内容に合わせてポーズや表情は変えて構いません。　　　
+【補足があれば下記に入力】
+俺の勝ちポーズで
+フォント：手書き風</p>
+                        </div>
+
+                        <div class="mt-12 flex flex-col items-center">
+                            <button onclick="copyText('example')" id="copyBtnExample" class="group flex items-center gap-4 px-10 py-5 bg-stone-700 text-white rounded-full font-bold hover:bg-stone-600 transition-all shadow-md active:scale-95 text-base mb-8">
+                                <svg class="w-5 h-5 text-stone-400 group-hover:text-white transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                                使用例をコピーする
+                            </button>
+                            
+                            <p class="text-stone-700 text-base md:text-lg font-bold leading-relaxed text-center">
+                                「補足」のキーワードを自由に組み合わせて、あなただけの表現を。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRODUCT PROMOTION SECTION -->
+            <div id="product-promo" class="mt-32 animate-in" style="animation-delay: 0.8s">
+                <div class="glass-card rounded-[3rem] overflow-hidden border-2 border-amber-100 bg-white">
+                    <div class="flex flex-col items-center">
+                        <div class="w-full">
+                            <img src="https://raw.githubusercontent.com/kenshiro0909/site-test/main/assets/GeminiGit.webp" alt="GitHub x Gemini Product Image" class="w-full h-auto object-cover border-b border-stone-100 shadow-sm">
+                        </div>
+                        <div class="w-full p-8 md:p-16 pt-10 text-center">
+                            <div class="flex items-center justify-center gap-2 mb-6">
+                                <span class="inline-block px-3 py-1 bg-amber-100 text-amber-800 text-[10px] font-bold rounded-full tracking-widest uppercase">Special Product Information</span>
+                                <span class="text-[10px] font-bold text-stone-400 border border-stone-200 px-2 py-0.5 rounded uppercase">PR</span>
+                            </div>
+                            <h3 class="serif text-3xl md:text-4xl font-bold mb-6 text-stone-900 leading-tight">
+                                今回の配布サイトは、<br>このツールで制作しています
+                            </h3>
+                            <p class="text-stone-600 text-base md:text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
+                                本サイトのような上品なLPも、AIとGitHubの組み合わせなら「爆速」で構築可能。このように特典ページとしても即座に活用できるため、まだお持ちでない方はぜひこの機会にお手に取ってください。
+                            </p>
+                            <div class="p-5 bg-amber-50 rounded-2xl mb-10 border border-amber-100 inline-block">
+                                <p class="text-amber-900 font-bold text-base md:text-lg flex items-center justify-center gap-3">
+                                    <svg class="w-6 h-6 text-amber-600 animate-bounce" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"></path></svg>
+                                    まもなく据え置き価格から値上げします。
+                                </p>
+                            </div>
+                            <div class="flex justify-center">
+                                <a href="https://brain-market.com/u/hokuto88/a/b5ATM2MjMgoTZsNWa0JXY" target="_blank" class="animate-pulse-cta inline-flex items-center justify-center w-full md:w-auto px-12 py-6 bg-gradient-to-r from-orange-600 to-red-600 text-white rounded-full font-bold hover:from-orange-500 hover:to-red-500 transition-all shadow-2xl active:scale-95 group text-lg md:text-xl">
+                                    コンテンツの詳細を確認する
+                                    <svg class="w-6 h-6 ml-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="py-20 bg-white border-t border-stone-100">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <div class="serif text-sm font-bold tracking-[0.3em] text-stone-300 uppercase">プロンプト配布企画</div>
+            <div class="text-[9px] text-stone-300 mt-4 tracking-widest uppercase">© 2026 All Rights Reserved [PR]</div>
+        </div>
+    </footer>
+
+    <script>
+        const prompts = {
+            master: `｛ここに生成したい内容｝のみの文章で、別のデザインパターンでお願い。プロのイラストクリエイターとして、１６：９で有料コンテンツの画像を上品で洗練されたデザインで作ってください。なお、おしゃれな感じに仕上げること。
+キャラは、内容に合わせてポーズや表情は変えて構いません。　　　
+
+【補足があれば下記を入力】
+例）ネガティブな様子で
+　　 謝罪の様子
+　　 女性ウケのいいデザインで
+　　 文字は1行で
+　　フォントは, 手書き風で
+…などなど何でも好きなのを任意でこちらには入力してください！！`,
+            example: `みなさん、スタンプありがとう
+
+のみの文章で、別のデザインパターンでお願い。プロのイラストクリエイターとして、１６：９で有料コンテンツの画像を上品で洗練されたデザインで作ってください。なお、おしゃれな感じに仕上げること。
+キャラは、内容に合わせてポーズや表情は変えて構いません。　　　
+【補足があれば下記に入力】
+俺の勝ちポーズで
+フォント：手書き風`
+        };
+
+        function copyText(type) {
+            const text = prompts[type];
+            const btnId = type === 'master' ? 'copyBtnMaster' : 'copyBtnExample';
+            const btn = document.getElementById(btnId);
+            
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            const originalContent = btn.innerHTML;
+            btn.innerHTML = "コピーしました！";
+            btn.classList.add('bg-amber-600');
+            
+            setTimeout(() => {
+                btn.innerHTML = originalContent;
+                btn.classList.remove('bg-amber-600');
+            }, 2000);
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.animate-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
